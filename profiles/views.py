@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from oc_lettings_site.models import Profile  # TODO: change after migration
+from profiles.models import Profile
 
 
 def profiles_index(request):
