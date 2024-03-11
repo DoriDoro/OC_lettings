@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from oc_lettings_site.models import Letting  # TODO: change after migration
+from lettings.models import Letting
 
 
 def lettings_index(request):
