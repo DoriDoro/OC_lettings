@@ -5,6 +5,6 @@ from lettings import views
 app_name = 'lettings'
 
 urlpatterns = [
-    path('lettings/', views.index, name='lettings_index'),
-    path('lettings/<int:letting_id>/', views.letting, name='letting'),
+    path('lettings/', views.LettingListView.as_view(), name='lettings_index'),
+    path('lettings/<int:letting_id>/', views.LettingDetailView.as_view(), name='letting'),
 ]
