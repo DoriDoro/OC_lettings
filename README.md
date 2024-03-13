@@ -1,8 +1,9 @@
-## Résumé
+# Orange County Lettings
 
-Site web d'Orange County Lettings
+## Description:
+Project 13 OpenClassrooms Path - Orange Country Lettings -- Scale a Django application using a modular architecture 
 
-## Développement local
+Work in progress ...
 
 ### Prérequis
 
