@@ -1,5 +1,4 @@
-from django.http import Http404
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from lettings.models import Letting
 
@@ -11,11 +10,7 @@ def index(request):
 
 
 def letting(request, letting_id):
-    # customize the error messages in DEBUG=True mode:
-    try:
-        single_letting = Letting.objects.get(id=letting_id)
-    except Letting.DoesNotExist:
-        raise Http404(f'This Letting with id: {letting_id} does not exist!')
+    single_letting = get_object_or_404(Letting, pk=letting_id)
     context = {
         'title': single_letting.title,
         'address': single_letting.address,
