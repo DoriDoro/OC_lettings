@@ -6,13 +6,14 @@ app is responsible for managing user profiles and related views.
 
 Patterns defined here include:
     - /profiles/ - URL pattern for the profiles index page, displaying a list of all user profiles.
-    - /profiles/<str:username>/ - URL pattern for viewing details of a specific user profile identified
-                                   by the username.
+    - /profiles/<str:username>/ - URL pattern for viewing details of a specific user profile
+        identified by the username.
 
 Notes:
-    - The URL patterns are namespaced under 'profiles' to prevent naming conflicts and provide better
-      organization and readability.
-    - Views for handling these URL patterns are defined in the 'views.py' module of the profiles app.
+    - The URL patterns are namespaced under 'profiles' to prevent naming conflicts and provide
+        better organization and readability.
+    - Views for handling these URL patterns are defined in the 'views.py' module of
+        the profiles app.
 
 Usage:
     This file serves as the URL configuration for the profiles app. It includes URL patterns for

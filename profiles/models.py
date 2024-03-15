@@ -12,12 +12,13 @@ Attributes:
                                 and can be left blank.
 
 Methods:
-    __str__(): Returns a string representation of the profile, which is the username of the associated user.
+    __str__(): Returns a string representation of the profile, which is the username of the
+        associated user.
 
 Usage:
-    The Profile model can be used to store additional information about users beyond what is provided
-    by the built-in User model. This could include profile pictures, bio information, preferences,
-    and more.
+    The Profile model can be used to store additional information about users beyond what is
+    provided by the built-in User model. This could include profile pictures, bio information,
+    preferences, and more.
 
 Example:
     To create a new user profile:
@@ -33,20 +34,21 @@ class Profile(models.Model):
     """
     Model for managing user profiles in the application.
 
-    Represents user profiles in the application, associated with corresponding User model instances.
+    Represents user profiles in the application, associated with corresponding User model
+    instances.
 
     Attributes:
         user (OneToOneField): A one-to-one relationship with the User model, linking each profile
-                              to a user account.
-        favorite_city (CharField): A field for storing the user's favorite city. This field is optional
-                                    and can be left blank.
+                                to a user account.
+        favorite_city (CharField): A field for storing the user's favorite city. This field is
+                                    optional and can be left blank.
 
     Methods:
         __str__(): Returns a string representation of the profile.
 
     Usage:
-        The Profile model can be used to store additional information about users beyond what is provided
-        by the built-in User model.
+        The Profile model can be used to store additional information about users beyond what is
+        provided by the built-in User model.
 
     Example:
         To create a new user profile:
