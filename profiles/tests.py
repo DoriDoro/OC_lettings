@@ -119,7 +119,3 @@ class ProfileTestCase(ModelTestCase):
         """
 
         self.assertEqual(self.user.username, self.USERNAME)
-
-
-
-
