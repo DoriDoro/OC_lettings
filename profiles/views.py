@@ -25,10 +25,12 @@ Usage:
 Example:
     To render the profiles index page:
         Profile.objects.all()  # Retrieve all user profiles from the database.
-        render(request, 'profiles_index.html', context)  # Render the index page with the profile data.
+        render(request, 'profiles_index.html', context)  # Render the index page with the profile
+            data.
 
     To render the details page for a specific user profile:
-        get_object_or_404(Profile, user__username=username)  # Retrieve the profile with the specified username.
+        get_object_or_404(Profile, user__username=username)  # Retrieve the profile with the
+            specified username.
         render(request, 'profile.html', context)  # Render the details page with the profile data.
 """
 
