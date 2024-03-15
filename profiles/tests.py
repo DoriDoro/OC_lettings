@@ -11,6 +11,9 @@ from profiles.models import Profile
 UserModel = get_user_model()
 
 
+# ------ Testing of the model instance of profile app ------
+# TODO: deletion of a model instance
+
 class ModelTestCase(TestCase):
     """
     Base test case for model testing.
@@ -37,32 +40,28 @@ class ModelTestCase(TestCase):
         )
 
 
-class ProfileTestCase(ModelTestCase):
-    """
-    Test case for Profile model.
-    """
+class UserTestCase(ModelTestCase):
+    TEST_USERNAME = 'Test Profile User'
+    TEST_EMAIL = 'jane.doe@mail.com'
+    TEST_FIRST_NAME = 'Jane'
+    TEST_LAST_NAME = 'Doe'
 
     def test_user_creation_successful(self):
         """
         Test successful user creation.
         """
 
-        test_username = 'Test Profile User'
-        test_email = 'jane.doe@mail.com'
-        test_first_name = 'Jane'
-        test_last_name = 'Doe'
-
         user = UserModel.objects.create_user(
-            username=test_username,
+            username=self.TEST_USERNAME,
             password=self.USER_PASSWORD,
-            email=test_email,
-            first_name=test_first_name,
-            last_name=test_last_name,
+            email=self.TEST_EMAIL,
+            first_name=self.TEST_FIRST_NAME,
+            last_name=self.TEST_LAST_NAME,
         )
-        self.assertEqual(user.username, test_username)
-        self.assertEqual(user.email, test_email)
-        self.assertEqual(user.first_name, test_first_name)
-        self.assertEqual(user.last_name, test_last_name)
+        self.assertEqual(user.username, self.TEST_USERNAME)
+        self.assertEqual(user.email, self.TEST_EMAIL)
+        self.assertEqual(user.first_name, self.TEST_FIRST_NAME)
+        self.assertEqual(user.last_name, self.TEST_LAST_NAME)
 
     def test_user_creation_failed(self):
         """
@@ -96,21 +95,23 @@ class ProfileTestCase(ModelTestCase):
                 last_name=self.USER_LAST_NAME,
             )
 
+
+class ProfileTestCase(ModelTestCase):
+    FAVORITE_CITY = 'Rennes'
+
     def test_profile_creation_successful(self):
         """
         Test successful profile creation.
         """
 
-        favorite_city = 'Rennes'
-
         profile = Profile.objects.create(
             user=self.user,
-            favorite_city=favorite_city
+            favorite_city=self.FAVORITE_CITY
         )
 
         self.assertEqual(profile.user.username, self.USERNAME)
         self.assertEqual(profile.user.email, self.USER_EMAIL)
-        self.assertEqual(profile.favorite_city, favorite_city)
+        self.assertEqual(profile.favorite_city, self.FAVORITE_CITY)
 
     def test_profile_str(self):
         """
