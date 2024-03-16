@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 
 from lettings.models import Address, Letting
@@ -8,9 +9,9 @@ class ModelTestCase(TestCase):
     NUMBER = 15
     STREET = 'Test Street'
     CITY = 'Test City'
-    STATE = 'Test State'
+    STATE = 'TE'
     ZIP_CODE = 12345
-    COUNTRY_ISO_CODE = 56789
+    COUNTRY_ISO_CODE = 789
 
     @classmethod
     def setUpTestData(cls):
