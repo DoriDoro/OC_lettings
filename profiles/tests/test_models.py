@@ -12,8 +12,6 @@ UserModel = get_user_model()
 
 
 # ------ Testing of the model instance of profile app ------
-# TODO: deletion of a model instance
-
 class ModelTestCase(TestCase):
     """
     Base test case for model testing.
@@ -95,23 +93,37 @@ class UserTestCase(ModelTestCase):
                 last_name=self.USER_LAST_NAME,
             )
 
+    def test_user_delete_successful(self):
+        self.assertTrue(UserModel.objects.filter(username=self.user.username).exists())
+        self.user.delete()
+        self.assertFalse(UserModel.objects.filter(username=self.user.username).exists())
+
 
 class ProfileTestCase(ModelTestCase):
     FAVORITE_CITY = 'Rennes'
+
+    def setUp(self):
+        super().setUp()
+        self.profile = Profile.objects.create(
+            user=self.user,
+            favorite_city=self.FAVORITE_CITY
+        )
 
     def test_profile_creation_successful(self):
         """
         Test successful profile creation.
         """
 
-        profile = Profile.objects.create(
-            user=self.user,
-            favorite_city=self.FAVORITE_CITY
-        )
+        self.assertEqual(self.profile.user.username, self.USERNAME)
+        self.assertEqual(self.profile.user.email, self.USER_EMAIL)
+        self.assertEqual(self.profile.favorite_city, self.FAVORITE_CITY)
 
-        self.assertEqual(profile.user.username, self.USERNAME)
-        self.assertEqual(profile.user.email, self.USER_EMAIL)
-        self.assertEqual(profile.favorite_city, self.FAVORITE_CITY)
+    def test_profile_delete_successful(self):
+        self.assertTrue(Profile.objects.filter(user=self.user).exists())
+
+        self.profile.delete()
+
+        self.assertFalse(Profile.objects.filter(user=self.user).exists())
 
     def test_profile_str(self):
         """
