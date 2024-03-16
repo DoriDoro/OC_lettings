@@ -45,4 +45,3 @@ class LettingsDetailViewTestCase(LettingViewTestCase):
         )
         with self.assertRaises(Http404):
             letting(request, letting_id=6)
-
