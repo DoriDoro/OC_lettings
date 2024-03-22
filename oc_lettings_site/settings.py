@@ -1,4 +1,5 @@
 import os
+import sentry_sdk
 
 from pathlib import Path
 
@@ -115,3 +116,19 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'core/staticfiles')
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "core/static", ]
+
+
+# Settings for Sentry
+sentry_sdk.init(
+    dsn=(
+        "https://2c2fc0c6f3e6a397eea86b00e4bdb02b@o4506774266249216"
+        ".ingest.us.sentry.io/4506925861502976"
+    ),
+    # Set traces_sample_rate to 1.0 to capture 100%
+    # of transactions for performance monitoring.
+    traces_sample_rate=1.0,
+    # Set profiles_sample_rate to 1.0 to profile 100%
+    # of sampled transactions.
+    # We recommend adjusting this value in production.
+    profiles_sample_rate=1.0,
+)
