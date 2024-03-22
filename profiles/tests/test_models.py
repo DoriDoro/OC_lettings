@@ -1,5 +1,30 @@
 """
 Test module for profiles app models.
+
+This module contains test cases for the models of the Profiles app in a Django project.
+It includes tests for creating, updating, and deleting user profiles.
+
+Attributes:
+    get_user_model: A function provided by Django to get the currently active user model.
+    TestCase: A subclass of Django's TestCase class for writing unit tests.
+    IntegrityError: An exception raised when a database integrity constraint is violated.
+    ValueError: An exception is often raised in Python when an invalid value is assigned to a
+        variable or passed to a function while calling it.
+
+Classes:
+    ModelTestCase(TestCase): A base test case for model testing.
+    UserTestCase(ModelTestCase): A test case for the user model.
+    ProfileTestCase(ModelTestCase): A test case for the profile model.
+
+Methods:
+    setUpTestData: Method to set up test data before running tests.
+    test_user_creation_successful: Method to test successful user creation.
+    test_user_creation_failed: Method to test user creation with invalid data.
+    test_user_creation_second_time: Method to test user creation when the user already exists.
+    test_user_delete_successful: Method to test successful user deletion.
+    test_profile_creation_successful: Method to test successful profile creation.
+    test_profile_delete_successful: Method to test successful profile deletion.
+    test_profile_str: Method to test string representation of the profile.
 """
 
 from django.contrib.auth import get_user_model
@@ -11,12 +36,7 @@ from profiles.models import Profile
 UserModel = get_user_model()
 
 
-# ------ Testing of the model instance of profile app ------
 class ModelTestCase(TestCase):
-    """
-    Base test case for model testing.
-    """
-
     USERNAME = 'Test User'
     USER_EMAIL = 'john.doe@mail.com'
     USER_PASSWORD = 'TestPassword'
@@ -25,10 +45,6 @@ class ModelTestCase(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        """
-        Set up test data for the base model test case.
-        """
-
         cls.user = UserModel.objects.create_user(
             username=cls.USERNAME,
             password=cls.USER_PASSWORD,
@@ -45,10 +61,6 @@ class UserTestCase(ModelTestCase):
     TEST_LAST_NAME = 'Doe'
 
     def test_user_creation_successful(self):
-        """
-        Test successful user creation.
-        """
-
         user = UserModel.objects.create_user(
             username=self.TEST_USERNAME,
             password=self.USER_PASSWORD,
@@ -62,10 +74,6 @@ class UserTestCase(ModelTestCase):
         self.assertEqual(user.last_name, self.TEST_LAST_NAME)
 
     def test_user_creation_failed(self):
-        """
-        Test user creation with invalid data.
-        """
-
         invalid_data = [
             {'username': '', "email": "", "password": None},
             {'username': '', "email": None, "password": ''},
@@ -80,10 +88,6 @@ class UserTestCase(ModelTestCase):
                 UserModel.objects.create_user(**data)
 
     def test_user_creation_second_time(self):
-        """
-        Test user creation when the user already exists.
-        """
-
         with self.assertRaises(IntegrityError):
             UserModel.objects.create_user(
                 username=self.USERNAME,
@@ -110,24 +114,14 @@ class ProfileTestCase(ModelTestCase):
         )
 
     def test_profile_creation_successful(self):
-        """
-        Test successful profile creation.
-        """
-
         self.assertEqual(self.profile.user.username, self.USERNAME)
         self.assertEqual(self.profile.user.email, self.USER_EMAIL)
         self.assertEqual(self.profile.favorite_city, self.FAVORITE_CITY)
 
     def test_profile_delete_successful(self):
         self.assertTrue(Profile.objects.filter(user=self.user).exists())
-
         self.profile.delete()
-
         self.assertFalse(Profile.objects.filter(user=self.user).exists())
 
     def test_profile_str(self):
-        """
-        Test string representation of the profile.
-        """
-
-        self.assertEqual(self.user.username, self.USERNAME)
+        self.assertEqual(str(self.user), self.USERNAME)

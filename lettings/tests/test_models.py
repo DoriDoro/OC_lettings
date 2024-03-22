@@ -1,9 +1,37 @@
+"""
+Module to test models of the lettings app.
+
+This module contains test cases for the models defined in the lettings app. It includes
+test cases for the Address and Letting models.
+
+Attributes:
+    TestCase: A subclass of Django's TestCase class for writing unit tests.
+    ValueError: An exception is often raised in Python when an invalid value is assigned to a
+        variable or passed to a function while calling it.
+
+Classes:
+    ModelTestCase(TestCase): A base test case class for setting up common test data.
+    AddressTestCase(ModelTestCase): Test case class for testing the Address model.
+    LettingTestCase(ModelTestCase): Test case class for testing the Letting model.
+
+Methods:
+    setUpTestData: Method to set up test data for the Address model.
+    test_address_creation_successful: Method to test successful creation of an Address instance.
+    test_address_creation_failed: Method to test failed creation of an Address instance.
+    test_address_str: Method to test the string representation of an Address instance.
+    test_address_delete_successful: Method to test successful deletion of an Address instance.
+    setUp: Method to set up test data for the Letting model.
+    test_letting_create_successful: Method to test successful creation of a Letting instance.
+    test_letting_create_failed: Method to test failed creation of a Letting instance.
+    test_letting_delete_successful: Method to test successful deletion of a Letting instance.
+    test_letting_str: Method to test the string representation of a Letting instance.
+"""
+
 from django.test import TestCase
 
 from lettings.models import Address, Letting
 
 
-# ------ Testing of the model instance of lettings app ------
 class ModelTestCase(TestCase):
     NUMBER = 15
     STREET = 'Test Street'
@@ -44,7 +72,7 @@ class AddressTestCase(ModelTestCase):
             )
 
     def test_address_str(self):
-        self.assertEqual(f'{self.address.number} {self.address.street}',
+        self.assertEqual(str(self.address),
                          f'{self.NUMBER} {self.STREET}')
 
     def test_address_delete_successful(self):
@@ -84,4 +112,4 @@ class LettingTestCase(ModelTestCase):
         self.assertFalse(Letting.objects.filter(title=self.letting.title).exists())
 
     def test_letting_str(self):
-        self.assertEqual(self.letting.title, self.TEST_TITLE)
+        self.assertEqual(str(self.letting), self.TEST_TITLE)

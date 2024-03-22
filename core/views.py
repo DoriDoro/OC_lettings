@@ -12,6 +12,7 @@ Note:
     to render templates. They are mapped to specific URLs in the URL configuration
     (urls.py) of the core app.
 """
+from django.http import HttpResponse
 from django.shortcuts import render
 
 
@@ -28,3 +29,13 @@ def index(request):
         HttpResponse: The HTTP response object containing the rendered template.
     """
     return render(request, 'index.html')
+
+
+def trigger_error(request):
+    """
+    example for production:
+    if request.user.is_authenticated and request.user.is_superuser:
+        raise 42
+    return HttpResponse(200)
+    """
+    division_by_zero = 1 / 0
