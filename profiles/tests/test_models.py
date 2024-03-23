@@ -124,4 +124,4 @@ class ProfileTestCase(ModelTestCase):
         self.assertFalse(Profile.objects.filter(user=self.user).exists())
 
     def test_profile_str(self):
-        self.assertEqual(str(self.user), self.USERNAME)
+        self.assertEqual(str(self.profile), self.USERNAME)
