@@ -6,6 +6,7 @@ The views are responsible for rendering templates for the homepage.
 
 Views defined here include:
     - index: Renders the homepage template ('index.html').
+    - trigger_error: Triggers an event in Sentry.
 
 Note:
     These views are simple render functions that use Django's 'render' shortcut
@@ -28,6 +29,7 @@ def index(request):
     Returns:
         HttpResponse: The HTTP response object containing the rendered template.
     """
+
     return render(request, 'index.html')
 
 
@@ -38,4 +40,5 @@ def trigger_error(request):
         raise 42
     return HttpResponse(200)
     """
+
     division_by_zero = 1 / 0
