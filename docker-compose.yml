@@ -2,9 +2,9 @@ version: '3.8'
 
 services:
   web:
-    build: ./app
-    command: python manage.py runserver 0.0.0.0:8000
+    build: ./
+    command: python manage.py runserver 0.0.0.0:8001
     volumes:
-      - ./app/:/usr/src/app/
+      - ./:/Desktop/DR_P13/P13/oc_lettings
     ports:
-      - 8000:8000
+      - 8001:8001
