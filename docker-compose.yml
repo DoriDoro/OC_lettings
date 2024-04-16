@@ -2,10 +2,8 @@ version: '3.8'
 
 services:
   backend:
-    image: doridoro/oc_lettings_site
+    image: doridoro/oc_lettings_site:1.0
     command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - ./:/Desktop/DR_P13/P13/oc_lettings
     ports:
       - 8000:8000
     environment:
