@@ -2,9 +2,9 @@ version: '3.8'
 
 services:
   backend:
-    image: doridoro/oc_lettings_site:1.0
+    image: doridoro/oc_lettings_site:1.1
     command: python manage.py runserver 0.0.0.0:8000
     ports:
       - 8000:8000
-    environment:
-      - DJANGO_SETTINGS_MODULE=oc_lettings_site.settings-local
+#    environment:
+#      - DJANGO_SETTINGS_MODULE=oc_lettings_site.settings-local
