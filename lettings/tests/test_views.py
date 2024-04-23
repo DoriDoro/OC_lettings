@@ -13,14 +13,18 @@ Attributes:
 
 Classes:
     LettingViewTestCase(TestCase): A subclass of TestCase to test the Letting model and views.
-    LettingsIndexViewTestCase(TestCase): A subclass of TestCase to test the index view for lettings.
-    LettingsDetailViewTestCase(LettingViewTestCase): A subclass of TestCase to test the detail view for lettings.
+    LettingsIndexViewTestCase(TestCase): A subclass of TestCase to test the index view for
+        lettings.
+    LettingsDetailViewTestCase(LettingViewTestCase): A subclass of TestCase to test the detail
+        view for lettings.
 
 Methods:
     setUpTestData: Method to set up test data before running tests.
     test_letting_index_view: Method to test the behavior of the index view for lettings.
-    test_letting_id_view_successful: Method to test the behavior of the detail view for a valid letting ID.
-    test_letting_id_view_failed: Method to test the behavior of the detail view for an invalid letting ID.
+    test_letting_id_view_successful: Method to test the behavior of the detail view for a
+        valid letting ID.
+    test_letting_id_view_failed: Method to test the behavior of the detail view for an
+        invalid letting ID.
 
 """
 

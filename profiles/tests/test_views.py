@@ -16,13 +16,16 @@ Attributes:
 Classes:
     ProfileViewTestCase(TestCase): A subclass of TestCase to test the Profile model and views.
     ProfileIndexViewTestCase(TestCase): A subclass of TestCase to test the index view for profiles.
-    ProfileDetailViewTestCase(ProfileViewTestCase): A subclass of TestCase to test the detail view for profiles.
+    ProfileDetailViewTestCase(ProfileViewTestCase): A subclass of TestCase to test the detail
+        view for profiles.
 
 Methods:
     setUpTestData: Method to set up test data before running tests.
     test_profile_index_view: Method to test the behavior of the index view for profiles.
-    test_profile_id_view_successful: Method to test the behavior of the detail view for a valid profile username.
-    test_profile_id_view_failed: Method to test the behavior of the detail view for an invalid profile username.
+    test_profile_id_view_successful: Method to test the behavior of the detail view for a valid
+        profile username.
+    test_profile_id_view_failed: Method to test the behavior of the detail view for an invalid
+        profile username.
 
 """
 

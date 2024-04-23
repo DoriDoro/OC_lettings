@@ -35,7 +35,6 @@ Example:
 """
 
 from django.shortcuts import render, get_object_or_404
-from sentry_sdk import capture_exception
 
 from profiles.models import Profile
 
