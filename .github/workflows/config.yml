@@ -35,7 +35,7 @@ jobs:
 
       - name: Run app tests
         env:
-          SECRET_KEY: ${{ security.SECRET_KEY }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
         run: python manage.py test
 
   docker:
