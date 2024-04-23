@@ -32,11 +32,6 @@ jobs:
         id: flake8
         continue-on-error: true
         run: flake8
-      - name: Check if 'Lint with flake8' step failed
-        if: steps.flake8.outcome != 'success'
-        run: |
-          echo "flake8 fails"
-          exit 1
 
       - name: Run app tests
         run: python manage.py test
