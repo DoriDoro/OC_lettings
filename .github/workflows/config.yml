@@ -7,9 +7,17 @@ on:
   pull_request:
     branches:
       - main
+#    paths-ignore:
+#      - 'coverage/**'
+#      - 'devdist/**'
+#      - 'dist/**'
+#      - 'docs/**'
 
+# check the coverage
+#  linting et la suite de tests et vérifie que la couverture de test est supérieure à 80 % ;
 jobs:
   test_app:
+    name: Testing the app
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -30,6 +38,7 @@ jobs:
         run: python manage.py test
 
   docker:
+    name: Docker
     runs-on: ubuntu-latest
     steps:
       - name: Remove docker container
@@ -48,6 +57,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
 #  docker_actions:
+#    name: Docker
 #    runs-on: ubuntu-latest
 #    steps:
 #      - name: Set up QEMU
