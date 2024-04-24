@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build the docker-compose image
-        run: docker-compose -f ./docker-compose.yml up --build
+        run: docker-compose -f docker-compose.yml build
 
       - name: Check running docker container
         run: docker ps
