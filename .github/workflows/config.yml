@@ -38,7 +38,7 @@ jobs:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
           ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
           DEBUG: ${{ secrets.DEBUG }}
-          DB_NAME: ${{ secrets.DB_NAME }}
+          NAME: ${{ secrets.DB_NAME }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: python manage.py test
 
