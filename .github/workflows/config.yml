@@ -29,8 +29,6 @@ jobs:
           pip install -r requirements.txt
 
       - name: Lint with flake8
-        id: flake8
-        continue-on-error: true
         run: flake8
 
       - name: Run app tests
@@ -40,26 +38,28 @@ jobs:
           DEBUG: ${{ secrets.DEBUG }}
           NAME: ${{ secrets.DB_NAME }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
-        run: python manage.py test
+        run: |
+          coverage run --source='.' --omit='*/migrations/*' manage.py test
+          coverage report
 
-  docker:
-    name: Docker
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Build the docker-compose image
-        run: docker-compose -f docker-compose.yml up --build
-
-      - name: Check running docker container
-        run: docker ps
-
-      - name: Login to DockerHub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+#  docker:
+#    name: Docker
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout repository
+#        uses: actions/checkout@v3
+#
+#      - name: Build the docker-compose image
+#        run: docker-compose -f docker-compose.yml up --build
+#
+#      - name: Check running docker container
+#        run: docker ps
+#
+#      - name: Login to DockerHub
+#        uses: docker/login-action@v3
+#        with:
+#          username: ${{ secrets.USERNAME }}
+#          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
 #  docker_actions:
 #    name: Docker
