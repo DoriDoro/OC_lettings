@@ -13,8 +13,6 @@ on:
 #      - 'dist/**'
 #      - 'docs/**'
 
-# check the coverage
-#  linting et la suite de tests et vérifie que la couverture de test est supérieure à 80 % ;
 jobs:
   test_app:
     name: Testing the app
@@ -42,24 +40,30 @@ jobs:
           coverage run --source='.' --omit='*/migrations/*' manage.py test
           coverage report
 
-#  docker:
-#    name: Docker
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout repository
-#        uses: actions/checkout@v3
-#
-#      - name: Build the docker-compose image
-#        run: docker-compose -f docker-compose.yml up --build
-#
-#      - name: Check running docker container
-#        run: docker ps
-#
-#      - name: Login to DockerHub
-#        uses: docker/login-action@v3
-#        with:
-#          username: ${{ secrets.USERNAME }}
-#          password: ${{ secrets.DOCKERHUB_TOKEN }}
+  docker:
+    name: Docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build the docker-compose image
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
+          DEBUG: ${{ secrets.DEBUG }}
+          NAME: ${{ secrets.DB_NAME }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+        run: docker-compose -f docker-compose.yml up --build
+
+      - name: Check running docker container
+        run: docker ps
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
 #  docker_actions:
 #    name: Docker
