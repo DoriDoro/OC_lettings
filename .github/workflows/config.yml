@@ -19,12 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        env:
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
-          ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
-          DEBUG: ${{ secrets.DEBUG }}
-          NAME: ${{ secrets.DB_NAME }}
-          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         uses: actions/checkout@v3
 
       - name: Install dependencies
@@ -36,6 +30,12 @@ jobs:
         run: flake8
 
       - name: Run app tests
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
+          DEBUG: ${{ secrets.DEBUG }}
+          NAME: ${{ secrets.DB_NAME }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: |
           coverage run --source='.' --omit='*/migrations/*' manage.py test
           coverage report
