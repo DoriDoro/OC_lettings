@@ -9,11 +9,11 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 # settings-local.py stores all sensitiv data to run the django app
 #ENV DJANGO_SETTINGS_MODULE oc_lettings_site.settings-local
-ENV SECRET_KEY ${{ secrets.SECRET_KEY }}
-ENV ALLOWED_HOSTS ${{ secrets.ALLOWED_HOSTS }}
-ENV DEBUG ${{ secrets.DEBUG }}
-ENV NAME ${{ secrets.DB_NAME }}
-ENV SENTRY_DSN ${{ secrets.SENTRY_DSN }}
+ENV SECRET_KEY 'fp$9^593hsriajg$_%=5trot9g!1qa@ew(o-1#@=&4%=hp46(s'
+ENV ALLOWED_HOSTS localhost 127.0.0.0.1
+ENV DEBUG False
+ENV NAME 'oc-lettings-site.sqlite3'
+ENV SENTRY_DSN https://2c2fc0c6f3e6a397eea86b00e4bdb02b@o4506774266249216.ingest.us.sentry.io/4506925861502976
 
 # install dependencies
 RUN pip install --upgrade pip
