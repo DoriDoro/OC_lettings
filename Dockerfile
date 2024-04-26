@@ -9,6 +9,11 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 # settings-local.py stores all sensitiv data to run the django app
 #ENV DJANGO_SETTINGS_MODULE oc_lettings_site.settings-local
+ENV SECRET_KEY ${{ secrets.SECRET_KEY }}
+ENV ALLOWED_HOSTS ${{ secrets.ALLOWED_HOSTS }}
+ENV DEBUG ${{ secrets.DEBUG }}
+ENV NAME ${{ secrets.DB_NAME }}
+ENV SENTRY_DSN ${{ secrets.SENTRY_DSN }}
 
 # install dependencies
 RUN pip install --upgrade pip
