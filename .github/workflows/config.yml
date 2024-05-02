@@ -51,7 +51,7 @@ jobs:
         run: docker tag oc_lettings:latest doridoro/oc_lettings_site:latest
 
       - name: Run Docker container
-        run: docker run -dp 8000:8000 oc_lettings --name oc_container
+        run: docker run -dp 8000:8000 oc_lettings
 
       - name: Check running docker container
         run: docker ps
