@@ -42,10 +42,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Build and tag the Docker image
+      - name: Build the Docker image
         run: |
           docker build -t oc_lettings .
-          docker tag oc_lettings-backend:latest doridoro/oc_lettings_site:latest
+          docker images
+
+      - name: Tag the Docker image
+        run: docker tag oc_lettings:latest doridoro/oc_lettings_site:latest
 
       - name: Run Docker container
         run: docker run -dp 8000:8000 oc_lettings --name oc_container
