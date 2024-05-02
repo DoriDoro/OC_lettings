@@ -19,5 +19,5 @@ RUN pip install -r requirements.txt
 # copy project
 COPY . .
 
-## start Django application
-#CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000"]
+# start Django application
+CMD [ "gunicorn", "oc_lettings_site.wsgi:application" ]
