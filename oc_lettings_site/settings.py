@@ -14,9 +14,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG')
+# set default to True and verify if the DEBUG variable is set to false
+DEBUG = os.environ.get('DEBUG', 'True').lower() == 'false'
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
+# set an empty list as default
+# ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',') \
+    if os.environ.get('ALLOWED_HOSTS') else []
 
 
 INSTALLED_APPS = [
@@ -130,3 +134,8 @@ if SENTRY_DSN:
         # We recommend adjusting this value in production.
         profiles_sample_rate=1.0,
     )
+
+try:
+    from project.settings_local import *
+except ImportError:
+    pass
