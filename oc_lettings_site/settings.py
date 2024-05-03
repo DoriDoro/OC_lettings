@@ -136,6 +136,6 @@ if SENTRY_DSN:
     )
 
 try:
-    from project.settings_local import *
+    from project.settings_local import *  # noqa
 except ImportError:
     pass
