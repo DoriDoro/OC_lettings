@@ -22,6 +22,11 @@ jobs:
           pip install -r requirements.txt
 
       - name: Create Staticroot
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
+          DEBUG: ${{ secrets.DEBUG }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: python manage.py collectstatic
 
       - name: Lint with flake8
