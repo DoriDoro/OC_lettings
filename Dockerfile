@@ -2,7 +2,7 @@
 FROM python:3.9.19-slim
 
 # set work directory
-WORKDIR /oc_lettings
+WORKDIR .
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -10,11 +10,11 @@ ENV PYTHONUNBUFFERED 1
 
 # install dependencies
 RUN pip install --upgrade pip
-COPY ./requirements.txt /oc_lettings
+COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
 # copy project
-COPY . /oc_lettings
+COPY . .
 
 # Collect static files
 RUN python manage.py collectstatic --no-input
