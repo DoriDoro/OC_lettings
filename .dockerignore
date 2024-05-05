@@ -13,4 +13,5 @@ app/*/*/*/__pycache__/
 venv/
 
 # local
+core/staticfiles
 settings-local.py

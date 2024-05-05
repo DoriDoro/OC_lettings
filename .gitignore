@@ -3,4 +3,6 @@
 venv
 .idea
 
+core/staticfiles
+
 settings-local.py
