@@ -8,7 +8,7 @@ WORKDIR .
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-ENV SECRET_KEY fp$9^593hsriajg$_%9g!1qa@ew(o-1#@=&4%=hp46(s
+ENV SECRET_KEY $SECRET_KEY
 
 # install dependencies
 RUN pip install --upgrade pip
