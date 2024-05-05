@@ -48,7 +48,7 @@ jobs:
           DEBUG: ${{ secrets.DEBUG }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: |
-          docker build -t oc_lettings .
+          docker build --build-arg SECRET_KEY=${{ secrets.SECRET_KEY }} -t oc_lettings .
           docker images
 
       - name: Tag the Docker image
