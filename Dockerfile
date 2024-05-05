@@ -10,12 +10,14 @@ ENV PYTHONUNBUFFERED 1
 
 # install dependencies
 RUN pip install --upgrade pip
-COPY ./requirements.txt .
+COPY ./requirements.txt /oc_lettings
 RUN pip install -r requirements.txt
 
 # copy project
-COPY . .
+COPY . /oc_lettings
+
+# Collect static files
+RUN python manage.py collectstatic --no-input
 
 # start Django application
-RUN python manage.py collectstatic --no-input
 CMD [ "gunicorn", "-b", "0.0.0.0:8000", "oc_lettings_site.wsgi:application" ]
