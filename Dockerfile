@@ -7,9 +7,6 @@ WORKDIR /oc_lettings
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-# settings-local.py stores all sensitiv data to run the django app
-#ENV DJANGO_SETTINGS_MODULE oc_lettings_site.settings-local
-
 
 # install dependencies
 RUN pip install --upgrade pip
