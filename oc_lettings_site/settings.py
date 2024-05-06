@@ -137,6 +137,6 @@ if SENTRY_DSN:
     )
 
 try:
-    from project.settings_local import *  # noqa
+    from oc_lettings_site.settings_local import *  # noqa
 except ImportError:
     pass
