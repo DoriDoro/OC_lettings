@@ -58,7 +58,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Push Docker image to Docker Hub
-        run: docker push doridoro/oc_lettings_site:latest
+        run: docker push doridoro/oc_lettings_site
 
 #  docker_actions:
 #    name: Docker
