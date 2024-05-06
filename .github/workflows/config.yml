@@ -51,6 +51,9 @@ jobs:
           docker build -t oc_lettings .
           docker images
 
+      - name: Tag the Docker image
+        run: docker tag oc_lettings:latest doridoro/oc_lettings_site:latest
+
       - name: Login to DockerHub
         uses: docker/login-action@v3
         with:
@@ -58,7 +61,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Push Docker image to Docker Hub
-        run: docker push doridoro/oc_lettings_site
+        run: docker push doridoro/oc_lettings_site:latest
 
 #  docker_actions:
 #    name: Docker
