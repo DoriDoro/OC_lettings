@@ -15,3 +15,7 @@ venv/
 # local
 core/staticfiles
 settings-local.py
+
+htmlcov/
+.coverage
+.coverage.*
