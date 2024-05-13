@@ -2,8 +2,8 @@
 
 # -- Project information
 
-project = 'OC Lettings'
-copyright = '2024, OC Lettings'
+project = 'Orange Country Lettings'
+copyright = '2024, Orange Country Lettings'
 author = 'DoriDoro'
 
 release = '0.1'
