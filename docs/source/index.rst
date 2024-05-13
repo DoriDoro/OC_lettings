@@ -1,13 +1,13 @@
-Welcome to OC Lettings documentation!
+Welcome to Orange Country Lettings documentation!
 ===================================
 
-**OC Lettings** is a Python library for cooks and food lovers
-that creates recipes mixing random ingredients.
-It pulls data from the `Open Food Facts database <https://world.openfoodfacts.org/>`_
-and offers a *simple* and *intuitive* API.
+**Orange County Lettings** is a pioneering startup within the property rental sector,
+currently embarking on an expansion journey across the United States. This venture is part of a
+broader trend in the real estate industry, where startups are leveraging technology and innovative
+business models to disrupt traditional property management practices.
 
 Check out the :doc:`usage` section for further information, including
-how to :ref:`installation` the project.
+how to install :ref:`installation` the project.
 
 .. note::
 
@@ -19,4 +19,3 @@ Contents
 .. toctree::
 
    usage
-   api
