@@ -2,13 +2,13 @@ Usage
 =====
 
 To be able to clone the Orange County Lettings GitHub repository and run this Django project from
-GitHub, you'll need Python_ (`https://www.python.org/`),
-pip_ (`https://pip.pypa.io/en/stable/installation/`), and
-Docker_ (`https://docs.docker.com/engine/install/`) installed on your machine. Python and pip are
+GitHub, you'll need `Python <https://www.python.org/>`_,
+`pip <https://pip.pypa.io/en/stable/installation/>`_, and
+`Docker <https://docs.docker.com/engine/install/>`_ installed on your machine. Python and pip are
 essential for managing the project's dependencies and running the Django server. Docker is
 recommended for creating a consistent environment for the project, ensuring it runs smoothly
 regardless of the host machine's configuration. Additionally, having
-Git_ (`https://git-scm.com/downloads`) installed is crucial for cloning the repository from GitHub.
+`Git <https://git-scm.com/downloads>`_ installed is crucial for cloning the repository from GitHub.
 
 
 .. _installation:
