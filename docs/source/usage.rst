@@ -38,18 +38,19 @@ Installation
 
 **Forth step:** create a local settings file
 
-Use the `settings-local-template.py` file which is located in
-`oc_lettings_site/settings-local-template.py` to set your local settings. Create a SECRET_KEY and
+Use the ``settings-local-template.py`` file which is located in
+``oc_lettings_site/settings-local-template.py`` to set your local settings. Create a SECRET_KEY and
 set the SENTRY_DSN.
 
 **Fifth step:** set the environment variable
 
 in PyCharm:
 
-go to `File > Settings > Tools > Terminal` and set in field: `Environment variables`
-`DJANGO_SETTINGS_MODULE=oc_lettings_site.settings_local`
+go to ``File > Settings > Tools > Terminal`` and enter in field: ``Environment variables:``
+this line: ``DJANGO_SETTINGS_MODULE=oc_lettings_site.settings_local``
 
 .. note::
+
     close all open Terminals and reopen them otherwise the environment variable will not be set.
 
 in a terminal:
