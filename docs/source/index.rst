@@ -7,7 +7,7 @@ currently embarking on an expansion journey across the United States. This ventu
 broader trend in the real estate industry, where startups are leveraging technology and innovative
 business models to disrupt traditional property management practices.
 
-Check out the :docs:`Usage <usage>` section for further information, including
+Check out the :doc:`Usage <usage>` section for further information, including
 how to install :ref:`installation` the project.
 
 Contents
