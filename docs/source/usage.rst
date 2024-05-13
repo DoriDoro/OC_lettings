@@ -1,33 +1,72 @@
 Usage
 =====
 
+To be able to clone the Orange County Lettings GitHub repository and run this Django project from
+GitHub, you'll need Python_ (`https://www.python.org/`),
+pip_ (`https://pip.pypa.io/en/stable/installation/`), and
+Docker_ (`https://docs.docker.com/engine/install/`) installed on your machine. Python and pip are
+essential for managing the project's dependencies and running the Django server. Docker is
+recommended for creating a consistent environment for the project, ensuring it runs smoothly
+regardless of the host machine's configuration. Additionally, having
+Git_ (`https://git-scm.com/downloads`) installed is crucial for cloning the repository from GitHub.
+
+
 .. _installation:
 
 Installation
 ------------
-
-To use Lumache, first install it using pip:
+**First step:** clone the GitHub repository
 
 .. code-block:: console
 
-   (.venv) $ pip install lumache
+   $ pip clone https://github.com/DoriDoro/OC_lettings.git
+   $ cd OC_lettings
 
-Creating recipes
-----------------
+**Second step:** create a virtual environment
 
-To retrieve a list of random ingredients,
-you can use the ``lumache.get_random_ingredients()`` function:
+.. code-block:: console
 
-.. autofunction:: lumache.get_random_ingredients
+   $ python3 -m venv venv
+   $ . venv/bin/activate on MacOS and Linux
+   $ venv\Scripts\activate on Windows
 
-The ``kind`` parameter should be either ``"meat"``, ``"fish"``,
-or ``"veggies"``. Otherwise, :py:func:`lumache.get_random_ingredients`
-will raise an exception.
+**Third step:** create a virtual environment
 
-.. autoexception:: lumache.InvalidKindError
+.. code-block:: console
 
-For example:
+   (venv) $ pip install --requirement requirements.txt
 
->>> import lumache
->>> lumache.get_random_ingredients()
-['shells', 'gorgonzola', 'parsley']
+**Forth step:** create a local settings file
+
+Use the `settings-local-template.py` file which is located in
+`oc_lettings_site/settings-local-template.py` to set your local settings. Create a SECRET_KEY and
+set the SENTRY_DSN.
+
+**Fifth step:** set the environment variable
+
+in PyCharm:
+
+go to `File > Settings > Tools > Terminal` and set in field: `Environment variables`
+`DJANGO_SETTINGS_MODULE=oc_lettings_site.settings_local`
+
+.. note::
+    close all open Terminals and reopen them otherwise the environment variable will not be set.
+
+in a terminal:
+
+.. code-block:: console
+
+   (venv) $ export SECRET_KEY=enter_your_secret_key
+   (venv) $ export SENTRY_DSN=enter_your_sentry_dsn
+
+**Sixth step:** run the server
+
+.. code-block:: console
+
+   (venv) $ python manage.py runserver
+
+or use gunicorn
+
+.. code-block:: console
+
+   (venv) $ gunicorn oc_lettings_site.wsgi:application
