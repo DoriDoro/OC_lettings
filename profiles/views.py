@@ -26,11 +26,11 @@ Example:
     To render the profiles index page:
         Profile.objects.all()  # Retrieve all user profiles from the database.
         render(request, 'profiles_index.html', context)  # Render the index page with the profile
-            data.
+        data.
 
     To render the details page for a specific user profile:
         get_object_or_404(Profile, user__username=username)  # Retrieve the profile with the
-            specified username.
+        specified username.
         render(request, 'profile.html', context)  # Render the details page with the profile data.
 """
 
@@ -54,8 +54,8 @@ def index(request):
     """
 
     profiles_list = Profile.objects.all()
-    context = {'profiles_list': profiles_list}
-    return render(request, 'profiles_index.html', context)
+    context = {"profiles_list": profiles_list}
+    return render(request, "profiles_index.html", context)
 
 
 def profile(request, username):
@@ -74,5 +74,5 @@ def profile(request, username):
     """
 
     single_profile = get_object_or_404(Profile, user__username=username)
-    context = {'profile': single_profile}
-    return render(request, 'profile.html', context)
+    context = {"profile": single_profile}
+    return render(request, "profile.html", context)

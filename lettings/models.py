@@ -37,7 +37,7 @@ Usage:
 Example:
     To create a new letting property with an address:
         address = Address.objects.create(number=123, street='Main St', city='Exampleville',
-            state='CA', zip_code=12345, country_iso_code='USA')
+        state='CA', zip_code=12345, country_iso_code='USA')
         letting = Letting.objects.create(title='Cozy Apartment', address=address)
 """
 
@@ -63,18 +63,21 @@ class Address(models.Model):
     Methods:
         __str__(): Returns a string representation of the address.
     """
+
     class Meta:
-        verbose_name_plural = 'addresses'
+        verbose_name_plural = "addresses"
 
     number = models.PositiveIntegerField(validators=[MaxValueValidator(9999)])
     street = models.CharField(max_length=64)
     city = models.CharField(max_length=64)
     state = models.CharField(max_length=2, validators=[MinLengthValidator(2)])
     zip_code = models.PositiveIntegerField(validators=[MaxValueValidator(99999)])
-    country_iso_code = models.CharField(max_length=3, validators=[MinLengthValidator(3)])
+    country_iso_code = models.CharField(
+        max_length=3, validators=[MinLengthValidator(3)]
+    )
 
     def __str__(self):
-        return f'{self.number} {self.street}'
+        return f"{self.number} {self.street}"
 
 
 class Letting(models.Model):
@@ -90,6 +93,7 @@ class Letting(models.Model):
     Methods:
         __str__(): Returns a string representation of the letting property.
     """
+
     title = models.CharField(max_length=256)
     address = models.OneToOneField(Address, on_delete=models.CASCADE)
 

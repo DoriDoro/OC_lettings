@@ -14,17 +14,17 @@ Attributes:
 Classes:
     LettingViewTestCase(TestCase): A subclass of TestCase to test the Letting model and views.
     LettingsIndexViewTestCase(TestCase): A subclass of TestCase to test the index view for
-        lettings.
+    lettings.
     LettingsDetailViewTestCase(LettingViewTestCase): A subclass of TestCase to test the detail
-        view for lettings.
+    view for lettings.
 
 Methods:
     setUpTestData: Method to set up test data before running tests.
     test_letting_index_view: Method to test the behavior of the index view for lettings.
     test_letting_id_view_successful: Method to test the behavior of the detail view for a
-        valid letting ID.
+    valid letting ID.
     test_letting_id_view_failed: Method to test the behavior of the detail view for an
-        invalid letting ID.
+    invalid letting ID.
 
 """
 
@@ -58,14 +58,14 @@ class LettingViewTestCase(TestCase):
 
         cls.address = Address.objects.create(
             number=18,
-            street='Test Street View',
-            city='Test City View',
-            state='Test State View',
+            street="Test Street View",
+            city="Test City View",
+            state="Test State View",
             zip_code=52369,
-            country_iso_code=74125
+            country_iso_code=74125,
         )
 
-        cls.letting = Letting.objects.create(title='Test House 1', address=cls.address)
+        cls.letting = Letting.objects.create(title="Test House 1", address=cls.address)
 
 
 class LettingsIndexViewTestCase(TestCase):
@@ -82,7 +82,7 @@ class LettingsIndexViewTestCase(TestCase):
         """
         Method to test the behavior of the index view for lettings.
         """
-        request = RequestFactory().get(reverse('lettings:lettings_index'))
+        request = RequestFactory().get(reverse("lettings:lettings_index"))
         response = index(request)
 
         self.assertEqual(response.status_code, 200)
@@ -107,7 +107,7 @@ class LettingsDetailViewTestCase(LettingViewTestCase):
         """
 
         request = RequestFactory().get(
-            reverse('lettings:letting', kwargs={'letting_id': self.letting.id})
+            reverse("lettings:letting", kwargs={"letting_id": self.letting.id})
         )
         response = letting(request, letting_id=self.letting.id)
 
@@ -119,7 +119,7 @@ class LettingsDetailViewTestCase(LettingViewTestCase):
         """
 
         request = RequestFactory().get(
-            reverse('lettings:letting', kwargs={'letting_id': self.letting.id})
+            reverse("lettings:letting", kwargs={"letting_id": self.letting.id})
         )
         with self.assertRaises(Http404):
             letting(request, letting_id=6)

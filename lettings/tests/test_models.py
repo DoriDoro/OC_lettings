@@ -7,7 +7,7 @@ test cases for the Address and Letting models.
 Attributes:
     TestCase: A subclass of Django's TestCase class for writing unit tests.
     ValueError: An exception is often raised in Python when an invalid value is assigned to a
-        variable or passed to a function while calling it.
+    variable or passed to a function while calling it.
 
 Classes:
     ModelTestCase(TestCase): A base test case class for setting up common test data.
@@ -34,9 +34,9 @@ from lettings.models import Address, Letting
 
 class ModelTestCase(TestCase):
     NUMBER = 15
-    STREET = 'Test Street'
-    CITY = 'Test City'
-    STATE = 'TE'
+    STREET = "Test Street"
+    CITY = "Test City"
+    STATE = "TE"
     ZIP_CODE = 12345
     COUNTRY_ISO_CODE = 789
 
@@ -48,12 +48,12 @@ class ModelTestCase(TestCase):
             city=cls.CITY,
             state=cls.STATE,
             zip_code=cls.ZIP_CODE,
-            country_iso_code=cls.COUNTRY_ISO_CODE
+            country_iso_code=cls.COUNTRY_ISO_CODE,
         )
 
 
 class AddressTestCase(ModelTestCase):
-    INVALID_NUMBER = 'one'
+    INVALID_NUMBER = "one"
 
     def test_address_creation_successful(self):
         self.assertEqual(self.address.number, self.NUMBER)
@@ -68,12 +68,11 @@ class AddressTestCase(ModelTestCase):
                 city=self.CITY,
                 state=self.STATE,
                 zip_code=self.ZIP_CODE,
-                country_iso_code=self.COUNTRY_ISO_CODE
+                country_iso_code=self.COUNTRY_ISO_CODE,
             )
 
     def test_address_str(self):
-        self.assertEqual(str(self.address),
-                         f'{self.NUMBER} {self.STREET}')
+        self.assertEqual(str(self.address), f"{self.NUMBER} {self.STREET}")
 
     def test_address_delete_successful(self):
         self.assertTrue(Address.objects.filter(number=self.address.number).exists())
@@ -82,14 +81,13 @@ class AddressTestCase(ModelTestCase):
 
 
 class LettingTestCase(ModelTestCase):
-    TEST_TITLE = 'Test Title'
-    TEST_ADDRESS = 'No model instance'
+    TEST_TITLE = "Test Title"
+    TEST_ADDRESS = "No model instance"
 
     def setUp(self):
         super().setUp()
         self.letting = Letting.objects.create(
-            title=self.TEST_TITLE,
-            address=self.address
+            title=self.TEST_TITLE, address=self.address
         )
 
     def test_letting_create_successful(self):
@@ -101,10 +99,7 @@ class LettingTestCase(ModelTestCase):
 
     def test_letting_create_failed(self):
         with self.assertRaises(ValueError):
-            Letting.objects.create(
-                title=self.TEST_TITLE,
-                address=self.TEST_ADDRESS
-            )
+            Letting.objects.create(title=self.TEST_TITLE, address=self.TEST_ADDRESS)
 
     def test_letting_delete_successful(self):
         self.assertTrue(Letting.objects.filter(title=self.letting.title).exists())

@@ -9,7 +9,7 @@ Attributes:
     TestCase: A subclass of Django's TestCase class for writing unit tests.
     IntegrityError: An exception raised when a database integrity constraint is violated.
     ValueError: An exception is often raised in Python when an invalid value is assigned to a
-        variable or passed to a function while calling it.
+    variable or passed to a function while calling it.
 
 Classes:
     ModelTestCase(TestCase): A base test case for model testing.
@@ -37,11 +37,11 @@ UserModel = get_user_model()
 
 
 class ModelTestCase(TestCase):
-    USERNAME = 'Test User'
-    USER_EMAIL = 'john.doe@mail.com'
-    USER_PASSWORD = 'TestPassword'
-    USER_FIRST_NAME = 'John'
-    USER_LAST_NAME = 'Doe'
+    USERNAME = "Test User"
+    USER_EMAIL = "john.doe@mail.com"
+    USER_PASSWORD = "TestPassword"
+    USER_FIRST_NAME = "John"
+    USER_LAST_NAME = "Doe"
 
     @classmethod
     def setUpTestData(cls):
@@ -55,10 +55,10 @@ class ModelTestCase(TestCase):
 
 
 class UserTestCase(ModelTestCase):
-    TEST_USERNAME = 'Test Profile User'
-    TEST_EMAIL = 'jane.doe@mail.com'
-    TEST_FIRST_NAME = 'Jane'
-    TEST_LAST_NAME = 'Doe'
+    TEST_USERNAME = "Test Profile User"
+    TEST_EMAIL = "jane.doe@mail.com"
+    TEST_FIRST_NAME = "Jane"
+    TEST_LAST_NAME = "Doe"
 
     def test_user_creation_successful(self):
         user = UserModel.objects.create_user(
@@ -75,12 +75,12 @@ class UserTestCase(ModelTestCase):
 
     def test_user_creation_failed(self):
         invalid_data = [
-            {'username': '', "email": "", "password": None},
-            {'username': '', "email": None, "password": ''},
-            {'username': '', "email": "testuser1@mail.com", "password": ""},
-            {'username': '', "email": "testuser2@mail.com", "password": None},
-            {'username': '', "email": '', "password": self.USER_PASSWORD},
-            {'username': '', "email": None, "password": self.USER_PASSWORD},
+            {"username": "", "email": "", "password": None},
+            {"username": "", "email": None, "password": ""},
+            {"username": "", "email": "testuser1@mail.com", "password": ""},
+            {"username": "", "email": "testuser2@mail.com", "password": None},
+            {"username": "", "email": "", "password": self.USER_PASSWORD},
+            {"username": "", "email": None, "password": self.USER_PASSWORD},
         ]
 
         for data in invalid_data:
@@ -104,13 +104,12 @@ class UserTestCase(ModelTestCase):
 
 
 class ProfileTestCase(ModelTestCase):
-    FAVORITE_CITY = 'Rennes'
+    FAVORITE_CITY = "Rennes"
 
     def setUp(self):
         super().setUp()
         self.profile = Profile.objects.create(
-            user=self.user,
-            favorite_city=self.FAVORITE_CITY
+            user=self.user, favorite_city=self.FAVORITE_CITY
         )
 
     def test_profile_creation_successful(self):

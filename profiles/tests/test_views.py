@@ -17,15 +17,15 @@ Classes:
     ProfileViewTestCase(TestCase): A subclass of TestCase to test the Profile model and views.
     ProfileIndexViewTestCase(TestCase): A subclass of TestCase to test the index view for profiles.
     ProfileDetailViewTestCase(ProfileViewTestCase): A subclass of TestCase to test the detail
-        view for profiles.
+    view for profiles.
 
 Methods:
     setUpTestData: Method to set up test data before running tests.
     test_profile_index_view: Method to test the behavior of the index view for profiles.
     test_profile_id_view_successful: Method to test the behavior of the detail view for a valid
-        profile username.
+    profile username.
     test_profile_id_view_failed: Method to test the behavior of the detail view for an invalid
-        profile username.
+    profile username.
 
 """
 
@@ -57,11 +57,11 @@ class ProfileViewTestCase(TestCase):
         setUpTestData: Method to set up test data before running tests.
     """
 
-    USERNAME = 'Test User'
-    USER_EMAIL = 'john.doe@mail.com'
-    USER_PASSWORD = 'TestPassword'
-    USER_FIRST_NAME = 'John'
-    USER_LAST_NAME = 'Doe'
+    USERNAME = "Test User"
+    USER_EMAIL = "john.doe@mail.com"
+    USER_PASSWORD = "TestPassword"
+    USER_FIRST_NAME = "John"
+    USER_LAST_NAME = "Doe"
 
     @classmethod
     def setUpTestData(cls):
@@ -73,7 +73,7 @@ class ProfileViewTestCase(TestCase):
             last_name=cls.USER_LAST_NAME,
         )
 
-        cls.profile = Profile.objects.create(user=cls.user, favorite_city='Test City')
+        cls.profile = Profile.objects.create(user=cls.user, favorite_city="Test City")
 
 
 class ProfileIndexViewTestCase(TestCase):
@@ -87,7 +87,7 @@ class ProfileIndexViewTestCase(TestCase):
     """
 
     def test_profile_index_view(self):
-        request = RequestFactory().get(reverse('profiles:profiles_index'))
+        request = RequestFactory().get(reverse("profiles:profiles_index"))
         response = index(request)
 
         self.assertEqual(response.status_code, 200)
@@ -101,14 +101,14 @@ class ProfileDetailViewTestCase(ProfileViewTestCase):
 
     Methods:
         test_profile_id_view_successful: Method to test the behavior of the detail view for
-            a valid profile username.
+        a valid profile username.
         test_profile_id_view_failed: Method to test the behavior of the detail view for
-            an invalid profile username.
+        an invalid profile username.
     """
 
     def test_profile_id_view_successful(self):
         request = RequestFactory().get(
-            reverse('profiles:profile', kwargs={'username': self.profile.user.username})
+            reverse("profiles:profile", kwargs={"username": self.profile.user.username})
         )
         response = profile(request, username=self.profile.user.username)
 
@@ -116,8 +116,8 @@ class ProfileDetailViewTestCase(ProfileViewTestCase):
 
     def test_profile_id_view_failed(self):
         request = RequestFactory().get(
-            reverse('profiles:profile', kwargs={'username': self.profile.user.username})
+            reverse("profiles:profile", kwargs={"username": self.profile.user.username})
         )
 
         with self.assertRaises(Http404):
-            profile(request, username='Invalid Test Username')
+            profile(request, username="Invalid Test Username")
