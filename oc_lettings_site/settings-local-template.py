@@ -1,11 +1,12 @@
-# Django Local Settings Template
-
 """
+Django Local Settings Template
+
 By importing from `oc_lettings_site.settings import *`, this template inherits all the
 configurations defined in the main settings.py file. This ensures that all the default settings
 and configurations are preserved, providing a solid foundation for the local development
 environment.
 """
+
 from oc_lettings_site.settings import *  # noqa
 
 """
