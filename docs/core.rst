@@ -1,24 +1,8 @@
 core package
 ============
 
-Subpackages
------------
-
-.. toctree::
-   :maxdepth: 4
-
-   core.migrations
-
 Submodules
 ----------
-
-core.apps module
-----------------
-
-.. automodule:: core.apps
-   :members:
-   :undoc-members:
-   :show-inheritance:
 
 core.tests module
 -----------------

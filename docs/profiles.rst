@@ -7,7 +7,6 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   profiles.migrations
    profiles.tests
 
 Submodules
@@ -17,14 +16,6 @@ profiles.admin module
 ---------------------
 
 .. automodule:: profiles.admin
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-profiles.apps module
---------------------
-
-.. automodule:: profiles.apps
    :members:
    :undoc-members:
    :show-inheritance:

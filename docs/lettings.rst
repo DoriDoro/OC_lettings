@@ -7,7 +7,6 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   lettings.migrations
    lettings.tests
 
 Submodules
@@ -17,14 +16,6 @@ lettings.admin module
 ---------------------
 
 .. automodule:: lettings.admin
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-lettings.apps module
---------------------
-
-.. automodule:: lettings.apps
    :members:
    :undoc-members:
    :show-inheritance:
