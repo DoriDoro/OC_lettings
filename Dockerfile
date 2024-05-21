@@ -1,6 +1,6 @@
 # pull official base image
 # Use a specific version of the Python image optimized for Django
-FROM python:3.9-slim-buster
+FROM python:3.9.19-slim
 
 # Set a specific working directory
 WORKDIR .
