@@ -3,7 +3,7 @@
 FROM python:3.9-slim-buster
 
 # Set a specific working directory
-WORKDIR /app
+WORKDIR .
 
 #Sset environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
