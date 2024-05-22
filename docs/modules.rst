@@ -6,6 +6,5 @@ oc_lettings
 
    core
    lettings
-   manage
    oc_lettings_site
    profiles
