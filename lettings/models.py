@@ -6,9 +6,9 @@ a physical address with attributes such as number, street, city, state, zip code
 and country ISO code. The Letting model represents a letting (rental) property with
 a title and a one-to-one relationship with an Address.
 
-Models defined here include:
-    - Address: Represents a physical address with various attributes.
-    - Letting: Represents a letting (rental) property with a title and an associated Address.
+Models:
+    Address: Represents a physical address with various attributes.
+    Letting: Represents a letting (rental) property with a title and an associated Address.
 
 Attributes:
     Address:
@@ -35,9 +35,16 @@ Usage:
     used in conjunction with Django's admin interface or custom views.
 
 Example:
-    To create a new letting property with an address:
-        address = Address.objects.create(number=123, street='Main St', city='Exampleville',
-        state='CA', zip_code=12345, country_iso_code='USA')
+    To create a new letting property with an address::
+
+        address = Address.objects.create(
+            number=123,
+            street='Main St',
+            city='Exampleville',
+            state='CA',
+            zip_code=12345,
+            country_iso_code='USA'
+        )
         letting = Letting.objects.create(title='Cozy Apartment', address=address)
 """
 
@@ -61,7 +68,7 @@ class Address(models.Model):
         country_iso_code (CharField): The ISO code of the country (e.g., 'USA' for United States).
 
     Methods:
-        __str__(): Returns a string representation of the address.
+        __str__: Returns a string representation of the address.
     """
 
     class Meta:
@@ -91,7 +98,7 @@ class Letting(models.Model):
         address (OneToOneField): A one-to-one relationship with an Address.
 
     Methods:
-        __str__(): Returns a string representation of the letting property.
+        __str__: Returns a string representation of the letting property.
     """
 
     title = models.CharField(max_length=256)

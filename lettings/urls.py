@@ -4,9 +4,9 @@ URL Configuration for the lettings app.
 This module defines URL patterns for the lettings app of the project. The lettings
 app is responsible for managing letting properties and related views.
 
-Patterns defined here include:
-    - /lettings/ - URL for the lettings index page, displaying a list of letting properties.
-    - /lettings/<int:letting_id>/ - URL pattern for viewing details of a specific letting
+URL Patterns:
+    - ``/lettings/`` - URL for the lettings index page, displaying a list of letting properties.
+    - ``/lettings/<int:letting_id>/`` - URL pattern for viewing details of a specific letting
       property identified by its ID.
 
 Note:
