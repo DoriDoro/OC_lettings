@@ -25,6 +25,8 @@ Methods:
     LettingTestCase.test_letting_create_failed: Method to test failed creation of a Letting instance.
     LettingTestCase.test_letting_delete_successful: Method to test successful deletion of a Letting instance.
     LettingTestCase.test_letting_str: Method to test the string representation of a Letting instance.
+
+:param TestCase: A subclass of Django's TestCase class for writing unit tests.
 """
 
 from django.test import TestCase
@@ -43,6 +45,10 @@ class ModelTestCase(TestCase):
         STATE (str): Test state for the address.
         ZIP_CODE (int): Test zip code for the address.
         COUNTRY_ISO_CODE (int): Test country ISO code for the address.
+        address (Address): An instance of Address model.
+
+    Methods:
+        setUpTestData: Method to set up test data before running tests.
     """
 
     NUMBER = 15
@@ -58,6 +64,14 @@ class ModelTestCase(TestCase):
         Set up test data for the Address model.
 
         Creates an Address instance with predefined test data.
+
+        Attributes:
+            number (int): An attribute of an instance of Address model.
+            street (str): An attribute of an instance of Address model.
+            city (str): An attribute of an instance of Address model.
+            state (str): An attribute of an instance of Address model.
+            zip_code (int): An attribute of an instance of Address model.
+            country_iso_code (int): An attribute of an instance of Address model.
         """
 
         cls.address = Address.objects.create(
@@ -76,6 +90,12 @@ class AddressTestCase(ModelTestCase):
 
     Attributes:
         INVALID_NUMBER (str): Invalid number for testing failed creation.
+
+    Methods:
+        test_address_creation_successful: Method to test the successful creation of an Address instance.
+        test_address_creation_failed: Method to test the failed creation of an Address instance.
+        test_address_str: Method to test the string representative of the Address instance.
+        test_address_delete_successful: Method to test the successful deletion of an Address instance.
     """
 
     INVALID_NUMBER = "one"
@@ -138,6 +158,18 @@ class LettingTestCase(ModelTestCase):
     Attributes:
         TEST_TITLE (str): Test title for the letting.
         TEST_ADDRESS (str): Invalid address for testing failed creation.
+
+    Methods:
+        setUp: Method to set up test data before running tests.
+        test_letting_create_successful: Method to test the successful creation of a Letting instance.
+        test_letting_create_failed: Method to test the failed creation of a Letting instance.
+        test_letting_delete_successful: Method to test the successful deletion of a Letting instance.
+        test_letting_str: Method to test the string representative of the Letting instance.
+
+    Attributes:
+        TEST_TITLE (str): A string representative the test_title for test letting.
+        TEST_ADDRESS (str): A string representative the test_address for test letting.
+        letting (Letting): An instance of Letting model.
     """
 
     TEST_TITLE = "Test Title"
@@ -148,6 +180,10 @@ class LettingTestCase(ModelTestCase):
         Set up test data for the Letting model.
 
         Creates a Letting instance with the predefined test data.
+
+        Attributes:
+            title (str): An attribute of an instance of Letting model.
+            address (Address): An instance of Address model.
         """
 
         super().setUp()

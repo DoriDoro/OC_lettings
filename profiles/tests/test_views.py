@@ -27,6 +27,14 @@ Methods:
     test_profile_id_view_failed: Method to test the behavior of the detail view for an invalid
     profile username.
 
+:param get_user_model: A function provided by Django to get the currently active user model.
+:param Http404: An exception raised when a requested object is not found.
+:param TestCase: A subclass of Django's TestCase class for writing unit tests.
+:param RequestFactory: A class provided by Django for creating mock request objects.
+:param reverse: A function provided by Django for generating URLs based on view names.
+
+:return: No return value.
+:rtype: None
 """
 
 from django.contrib.auth import get_user_model
@@ -42,16 +50,18 @@ UserModel = get_user_model()
 
 class ProfileViewTestCase(TestCase):
     """
-    Test case for Profile model and views.
+    Base test case for Profile model and views.
 
     This class contains methods to test the behavior of Profile model and views.
 
     Attributes:
-        USERNAME: A string representing the username for test user.
-        USER_EMAIL: A string representing the email for test user.
-        USER_PASSWORD: A string representing the password for test user.
-        USER_FIRST_NAME: A string representing the first name for test user.
-        USER_LAST_NAME: A string representing the last name for test user.
+        USERNAME (str): A string representing the username for test user.
+        USER_EMAIL (str): A string representing the email for test user.
+        USER_PASSWORD (str): A string representing the password for test user.
+        USER_FIRST_NAME (str): A string representing the first name for test user.
+        USER_LAST_NAME (str): A string representing the last name for test user.
+        user (User): An instance of User model.
+        profile (Profile): An instance of Profile model.
 
     Methods:
         setUpTestData: Method to set up test data before running tests.
@@ -65,6 +75,21 @@ class ProfileViewTestCase(TestCase):
 
     @classmethod
     def setUpTestData(cls):
+        """
+        Set up test data for the user model.
+
+        Creates a user and a profile instance with predefined test data.
+
+        Attributes:
+            username (str): An attribute of an instance of User model.
+            password (str): An attribute of an instance of User model.
+            email (str): An attribute of an instance of User model.
+            first_name (str): An attribute of an instance of User model.
+            last_name (str): An attribute of an instance of User model.
+            user (instance): An instance of a User model.
+            favorite_city (str): An attribute of an instance of Profile model.
+        """
+
         cls.user = UserModel.objects.create_user(
             username=cls.USERNAME,
             password=cls.USER_PASSWORD,
@@ -87,6 +112,15 @@ class ProfileIndexViewTestCase(TestCase):
     """
 
     def test_profile_index_view(self):
+        """
+        Test the behavior of the index view for profiles.
+
+        This function creates a mock HTTP GET request to the index view for profiles
+        and checks if the response status code is 200, indicating a successful request.
+
+        :return: None
+        """
+
         request = RequestFactory().get(reverse("profiles:profiles_index"))
         response = index(request)
 
@@ -100,13 +134,23 @@ class ProfileDetailViewTestCase(ProfileViewTestCase):
     This class contains methods to test the behavior of the detail view for profiles.
 
     Methods:
-        test_profile_id_view_successful: Method to test the behavior of the detail view for
-        a valid profile username.
-        test_profile_id_view_failed: Method to test the behavior of the detail view for
-        an invalid profile username.
+        test_profile_id_view_successful: Method to test the behavior of the detail view for a valid
+        profile username.
+        test_profile_id_view_failed: Method to test the behavior of the detail view for an invalid
+        profile username.
     """
 
     def test_profile_id_view_successful(self):
+        """
+        Test the behavior of the detail view for a valid profile username.
+
+        This function creates a mock HTTP GET request to the detail view for a valid
+        profile username and checks if the response status code is 200, indicating
+        a successful request.
+
+        :return: None
+        """
+
         request = RequestFactory().get(
             reverse("profiles:profile", kwargs={"username": self.profile.user.username})
         )
@@ -115,6 +159,16 @@ class ProfileDetailViewTestCase(ProfileViewTestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_profile_id_view_failed(self):
+        """
+        Test the behavior of the detail view for an invalid profile username.
+
+        This function creates a mock HTTP GET request to the detail view for an invalid
+        profile username and checks if the view raises an Http404 exception, indicating
+        that the requested object was not found.
+
+        :raises Http404: When attempting to access a profile with an invalid username.
+        """
+
         request = RequestFactory().get(
             reverse("profiles:profile", kwargs={"username": self.profile.user.username})
         )

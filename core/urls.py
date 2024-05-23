@@ -12,6 +12,8 @@ Note:
     This file should only include URL patterns specific to the core app.
     Global URL patterns and patterns for other apps should be included in
     the project's main URL configuration.
+
+:param path: A module to define URL patterns for Django projects.
 """
 
 from django.urls import path

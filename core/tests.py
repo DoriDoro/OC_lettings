@@ -12,6 +12,10 @@ Attributes:
 
 Classes:
     CoreViewTestCase: A subclass of TestCase to test the index view.
+
+:param TestCase: A subclass of Django's TestCase class for writing unit tests.
+:param RequestFactory: A class provided by Django for creating mock request objects.
+:param reverse: A function provided by Django for generating URLs based on view names.
 """
 
 from django.test import TestCase, RequestFactory
@@ -25,8 +29,6 @@ class CoreViewTestCase(TestCase):
     Test case for the CoreViewTestCase class.
 
     This class contains test methods to verify the behavior of the index view in the core app.
-
-    :param TestCase: A subclass of Django's TestCase class for writing unit tests.
 
     Methods:
         test_core_index_view: Method to test the behavior of the index view.

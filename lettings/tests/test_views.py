@@ -21,6 +21,11 @@ Methods:
     LettingsIndexViewTestCase.test_letting_index_view: Method to test the behavior of the index view for lettings.
     LettingsDetailViewTestCase.test_letting_id_view_successful: Method to test the behavior of the detail view for a valid letting ID.
     LettingsDetailViewTestCase.test_letting_id_view_failed: Method to test the behavior of the detail view for an invalid letting ID.
+
+:param Http404: An exception raised when a requested object is not found.
+:param TestCase: A subclass of Django's TestCase class for writing unit tests.
+:param RequestFactory: A class provided by Django for creating mock request objects.
+:param reverse: A function provided by Django for generating URLs based on view names.
 """
 
 from django.http import Http404
@@ -33,7 +38,7 @@ from lettings.views import index, letting
 
 class LettingViewTestCase(TestCase):
     """
-    Test case for Letting model and views.
+    Base test case for Letting model and views.
 
     This class contains methods to test the behavior of Letting model and views.
 

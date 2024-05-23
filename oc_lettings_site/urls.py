@@ -14,10 +14,12 @@ Notes:
     - Each app's URL patterns are namespaced to prevent naming conflicts and provide better
       organization and readability.
 
-Usage:
-    This file serves as the central URL configuration for the entire project. It includes
-    URL patterns for various parts of the project, such as admin interfaces, main pages,
-    and specific app functionalities.
+:param admin: The Django admin site instance.
+:param path: The function used for defining URL patterns.
+:param include: The function used for including URL patterns from other apps.
+
+:return: The list of URL patterns for the project.
+:rtype: list
 """
 
 from django.contrib import admin
