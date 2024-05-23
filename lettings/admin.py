@@ -6,13 +6,11 @@ admin interface. This allows administrators to manage Lettings data directly
 through the Django admin site.
 
 Models Registered:
-    - Address: Allows administrators to view, create, edit, and delete address
-               records associated with lettings.
-    - Letting: Allows administrators to view, create, edit, and delete letting
-               records, which represent rental properties.
+    Address
+    Letting
 
 Note:
-    By registering the models with the Django admin site using 'admin.site.register',
+    By registering the models with the Django admin site using ``admin.site.register``,
     administrators gain access to the default admin interface for managing the
     registered models. Additional customization of the admin interface can be
     achieved by creating ModelAdmin subclasses and registering them instead.

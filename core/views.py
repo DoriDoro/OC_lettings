@@ -12,6 +12,8 @@ Note:
     These views are simple render functions that use Django's 'render' shortcut
     to render templates. They are mapped to specific URLs in the URL configuration
     (urls.py) of the core app.
+
+:param render: A module to render templates in Django views.
 """
 
 from django.shortcuts import render
