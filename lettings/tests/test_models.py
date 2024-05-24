@@ -2,7 +2,7 @@
 Module to test models of the lettings app.
 
 This module contains test cases for the models defined in the lettings app. It includes
-test cases for the Address and Letting models.
+test cases for the :class:`lettings.Address` and :class:`lettings.Letting` models.
 
 Attributes:
     TestCase (TestCase): A subclass of Django's TestCase class for writing unit tests.
@@ -10,28 +10,28 @@ Attributes:
                             to a variable or passed to a function.
 
 Classes:
-    ModelTestCase: A base test case class for setting up common test data.
-    AddressTestCase: Test case class for testing the Address model.
-    LettingTestCase: Test case class for testing the Letting model.
+    ModelTestCase (TestCase): A base test case class for setting up common test data.
+    AddressTestCase (ModelTestCase): Test case class for testing the :class:`lettings.Address` model.
+    LettingTestCase (ModelTestCase): Test case class for testing the :class:`lettings.Letting` model.
 
 Methods:
-    ModelTestCase.setUpTestData: Method to set up test data for the Address model.
+    ModelTestCase.setUpTestData: Method to set up test data for the :class:`lettings.Address` model.
     AddressTestCase.test_address_creation_successful: Method to test successful creation of an
-    Address instance.
-    AddressTestCase.test_address_creation_failed: Method to test failed creation of an Address
+    :class:`lettings.Address` instance.
+    AddressTestCase.test_address_creation_failed: Method to test failed creation of an :class:`lettings.Address`
     instance.
-    AddressTestCase.test_address_str: Method to test the string representation of an Address
+    AddressTestCase.test_address_str: Method to test the string representation of an :class:`lettings.Address`
     instance.
     AddressTestCase.test_address_delete_successful: Method to test successful deletion of an
-    Address instance.
-    LettingTestCase.setUp: Method to set up test data for the Letting model.
+    :class:`lettings.Address` instance.
+    LettingTestCase.setUp: Method to set up test data for the :class:`lettings.Letting` model.
     LettingTestCase.test_letting_create_successful: Method to test successful creation of a
-    Letting instance.
-    LettingTestCase.test_letting_create_failed: Method to test failed creation of a Letting
+    :class:`lettings.Letting` instance.
+    LettingTestCase.test_letting_create_failed: Method to test failed creation of a :class:`lettings.Letting`
     instance.
     LettingTestCase.test_letting_delete_successful: Method to test successful deletion of a
-    Letting instance.
-    LettingTestCase.test_letting_str: Method to test the string representation of a Letting
+    :class:`lettings.Letting` instance.
+    LettingTestCase.test_letting_str: Method to test the string representation of a :class:`lettings.Letting`
     instance.
 
 :param TestCase: A subclass of Django's TestCase class for writing unit tests.
@@ -46,17 +46,23 @@ class ModelTestCase(TestCase):
     """
     Base test case class for setting up common test data.
 
-    Attributes:
-        NUMBER (int): Test number for the address.
-        STREET (str): Test street for the address.
-        CITY (str): Test city for the address.
-        STATE (str): Test state for the address.
-        ZIP_CODE (int): Test zip code for the address.
-        COUNTRY_ISO_CODE (int): Test country ISO code for the address.
-        address (Address): An instance of Address model.
-
     Methods:
         setUpTestData: Method to set up test data before running tests.
+
+    :param NUMBER: Test number for the :class:`lettings.Address`.
+    :type NUMBER: int, required
+    :param STREET: Test street for the :class:`lettings.Address`.
+    :type STREET: str, required
+    :param CITY: Test city for the :class:`lettings.Address`.
+    :type CITY: str, required
+    :param STATE: Test state for the :class:`lettings.Address`.
+    :type STATE: str, required
+    :param ZIP_CODE: Test zip code for the :class:`lettings.Address`.
+    :type ZIP_CODE: int, required
+    :param COUNTRY_ISO_CODE: Test country ISO code for the :class:`lettings.Address`.
+    :type COUNTRY_ISO_CODE: int, required
+    :param address: An instance of Address model.
+    :type address: class:`lettings.Address`
     """
 
     NUMBER = 15
@@ -69,17 +75,22 @@ class ModelTestCase(TestCase):
     @classmethod
     def setUpTestData(cls):
         """
-        Set up test data for the Address model.
+        Set up test data for the :class:`lettings.Address` model.
 
-        Creates an Address instance with predefined test data.
+        Creates an :class:`lettings.Address` instance with predefined test data.
 
-        Attributes:
-            number (int): An attribute of an instance of Address model.
-            street (str): An attribute of an instance of Address model.
-            city (str): An attribute of an instance of Address model.
-            state (str): An attribute of an instance of Address model.
-            zip_code (int): An attribute of an instance of Address model.
-            country_iso_code (int): An attribute of an instance of Address model.
+        :param number: An attribute of an instance of :class:`lettings.Address` model.
+        :type number: int, required
+        :param street: An attribute of an instance of :class:`lettings.Address` model.
+        :type street: str, required
+        :param city: An attribute of an instance of :class:`lettings.Address` model.
+        :type city: str, required
+        :param state: An attribute of an instance of :class:`lettings.Address` model.
+        :type state: str, required
+        :param zip_code: An attribute of an instance of :class:`lettings.Address` model.
+        :type zip_code: int, required
+        :param country_iso_code: An attribute of an instance of :class:`lettings.Address` model.
+        :type country_iso_code: int, required
         """
 
         cls.address = Address.objects.create(
@@ -94,16 +105,17 @@ class ModelTestCase(TestCase):
 
 class AddressTestCase(ModelTestCase):
     """
-    Test case class for testing the Address model.
-
-    Attributes:
-        INVALID_NUMBER (str): Invalid number for testing failed creation.
+    Test case class for testing the :class:`lettings.Address` model and it inherits from ModelTestCase.
 
     Methods:
-        test_address_creation_successful: Method to test the successful creation of an Address instance.
-        test_address_creation_failed: Method to test the failed creation of an Address instance.
-        test_address_str: Method to test the string representative of the Address instance.
-        test_address_delete_successful: Method to test the successful deletion of an Address instance.
+        test_address_creation_successful: Method to test the successful creation of an :class:`lettings.Address`
+        instance.
+        test_address_creation_failed: Method to test the failed creation of an :class:`lettings.Address` instance.
+        test_address_str: Method to test the string representative of the :class:`lettings.Address` instance.
+        test_address_delete_successful: Method to test the successful deletion of an :class:`lettings.Address` instance.
+
+    :param INVALID_NUMBER (str): Invalid number for testing failed creation.
+    :type INVALID_NUMBER: str, required
     """
 
     INVALID_NUMBER = "one"
@@ -113,6 +125,9 @@ class AddressTestCase(ModelTestCase):
         Test successful creation of an Address instance.
 
         Asserts that the created Address instance has the expected attributes.
+
+        :return: None
+        :rtype: None
         """
 
         self.assertEqual(self.address.number, self.NUMBER)
@@ -121,11 +136,11 @@ class AddressTestCase(ModelTestCase):
 
     def test_address_creation_failed(self):
         """
-        Test failed creation of an Address instance.
+        Test failed creation of an :class:`lettings.Address` instance.
 
         Asserts that a ValueError is raised when an invalid number is used.
 
-        :raises ValueError: If an invalid number is used for creating an Address.
+        :raises ValueError: If an invalid number is used for creating an :class:`lettings.Address`.
         """
 
         with self.assertRaises(ValueError):
@@ -140,18 +155,24 @@ class AddressTestCase(ModelTestCase):
 
     def test_address_str(self):
         """
-        Test the string representation of an Address instance.
+        Test the string representation of an :class:`lettings.Address` instance.
 
         Asserts that the string representation is as expected.
+
+        :return: None
+        :rtype: None
         """
 
         self.assertEqual(str(self.address), f"{self.NUMBER} {self.STREET}")
 
     def test_address_delete_successful(self):
         """
-        Test successful deletion of an Address instance.
+        Test successful deletion of an :class:`lettings.Address` instance.
 
-        Asserts that the Address instance is deleted from the database.
+        Asserts that the :class:`lettings.Address` instance is deleted from the database.
+
+        :return: None
+        :rtype: None
         """
 
         self.assertTrue(Address.objects.filter(number=self.address.number).exists())
@@ -161,23 +182,21 @@ class AddressTestCase(ModelTestCase):
 
 class LettingTestCase(ModelTestCase):
     """
-    Test case class for testing the Letting model.
-
-    Attributes:
-        TEST_TITLE (str): Test title for the letting.
-        TEST_ADDRESS (str): Invalid address for testing failed creation.
+    Test case class for testing the :class:`lettings.Letting` model.
 
     Methods:
         setUp: Method to set up test data before running tests.
-        test_letting_create_successful: Method to test the successful creation of a Letting instance.
-        test_letting_create_failed: Method to test the failed creation of a Letting instance.
-        test_letting_delete_successful: Method to test the successful deletion of a Letting instance.
-        test_letting_str: Method to test the string representative of the Letting instance.
+        test_letting_create_successful: Method to test the successful creation of a :class:`lettings.Letting` instance.
+        test_letting_create_failed: Method to test the failed creation of a :class:`lettings.Letting` instance.
+        test_letting_delete_successful: Method to test the successful deletion of a :class:`lettings.Letting` instance.
+        test_letting_str: Method to test the string representative of the :class:`lettings.Letting` instance.
 
-    Attributes:
-        TEST_TITLE (str): A string representative the test_title for test letting.
-        TEST_ADDRESS (str): A string representative the test_address for test letting.
-        letting (Letting): An instance of Letting model.
+    :param TEST_TITLE: A string representative the test_title for test :class:`lettings.Letting` instance.
+    :type TEST_TITLE: str, required
+    :param TEST_ADDRESS: A string representative the test_address for test :class:`lettings.Letting` instance.
+    :type TEST_ADDRESS: str, required
+    :param letting: An instance of :class:`lettings.Letting` model.
+    :type letting: class:`lettings.Letting`
     """
 
     TEST_TITLE = "Test Title"
@@ -185,13 +204,14 @@ class LettingTestCase(ModelTestCase):
 
     def setUp(self):
         """
-        Set up test data for the Letting model.
+        Set up test data for the :class:`lettings.Letting` model.
 
-        Creates a Letting instance with the predefined test data.
+        Creates a :class:`lettings.Letting` instance with the predefined test data.
 
-        Attributes:
-            title (str): An attribute of an instance of Letting model.
-            address (Address): An instance of Address model.
+        :param title: An attribute of an instance of :class:`lettings.Letting` model.
+        :type title: str, required
+        :param address: An instance of :class:`lettings.Address` model.
+        :type address: class:`lettings.Address`
         """
 
         super().setUp()
@@ -201,9 +221,12 @@ class LettingTestCase(ModelTestCase):
 
     def test_letting_create_successful(self):
         """
-        Test successful creation of a Letting instance.
+        Test successful creation of a :class:`lettings.Letting` instance.
 
-        Asserts that the created Letting instance has the expected attributes.
+        Asserts that the created :class:`lettings.Letting` instance has the expected attributes.
+
+        :return: None
+        :rtype: None
         """
 
         self.assertEqual(self.letting.title, self.TEST_TITLE)
@@ -214,11 +237,11 @@ class LettingTestCase(ModelTestCase):
 
     def test_letting_create_failed(self):
         """
-        Test failed creation of a Letting instance.
+        Test failed creation of a :class:`lettings.Letting` instance.
 
         Asserts that a ValueError is raised when an invalid address is used.
 
-        :raises ValueError: If an invalid address is used for creating a Letting.
+        :raises ValueError: If an invalid address is used for creating a :class:`lettings.Letting`.
         """
 
         with self.assertRaises(ValueError):
@@ -226,9 +249,12 @@ class LettingTestCase(ModelTestCase):
 
     def test_letting_delete_successful(self):
         """
-        Test successful deletion of a Letting instance.
+        Test successful deletion of a :class:`lettings.Letting` instance.
 
-        Asserts that the Letting instance is deleted from the database.
+        Asserts that the :class:`lettings.Letting` instance is deleted from the database.
+
+        :return: None
+        :rtype: None
         """
         self.assertTrue(Letting.objects.filter(title=self.letting.title).exists())
         self.letting.delete()
@@ -236,9 +262,12 @@ class LettingTestCase(ModelTestCase):
 
     def test_letting_str(self):
         """
-        Test the string representation of a Letting instance.
+        Test the string representation of a :class:`lettings.Letting` instance.
 
         Asserts that the string representation is as expected.
+
+        :return: None
+        :rtype: None
         """
 
         self.assertEqual(str(self.letting), self.TEST_TITLE)

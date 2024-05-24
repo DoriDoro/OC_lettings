@@ -9,12 +9,13 @@ Attributes:
     TestCase (TestCase): A subclass of Django's TestCase class for writing unit tests.
     Http404 (Exception): An exception raised when a requested object is not found.
     RequestFactory (RequestFactory): A class provided by Django for creating mock request objects.
-    reverse (function): A function provided by Django for generating URLs based on view names.
+    reverse (Function): A function provided by Django for generating URLs based on view names.
 
 Classes:
-    LettingViewTestCase: A subclass of TestCase to test the Letting model and views.
-    LettingsIndexViewTestCase: A subclass of TestCase to test the index view for lettings.
-    LettingsDetailViewTestCase: A subclass of LettingViewTestCase to test the detail view for
+    LettingViewTestCase (TestCase): A subclass of TestCase to test the Letting model and views.
+    LettingsIndexViewTestCase (LettingViewTestCase): A subclass of LettingViewTestCase to test the index view for
+    lettings.
+    LettingsDetailViewTestCase (LettingViewTestCase): A subclass of LettingViewTestCase to test the detail view for
     lettings.
 
 Methods:
@@ -44,11 +45,10 @@ class LettingViewTestCase(TestCase):
     """
     Base test case for Letting model and views.
 
-    This class contains methods to test the behavior of Letting model and views.
-
-    Attributes:
-        address (Address): An instance of the Address model.
-        letting (Letting): An instance of the Letting model.
+    :param address: An instance of the :class:`lettings.Address`.
+    :type address: class:`lettings.Address`
+    :param letting: An instance of the :class:`lettings.Letting`.
+    :type letting: class:`lettings.Letting`
     """
 
     @classmethod
@@ -58,15 +58,22 @@ class LettingViewTestCase(TestCase):
 
         Creates an Address instance and a Letting instance for testing purposes.
 
-        Attributes:
-            number (int): An attribute of an instance of Address model.
-            street (str): An attribute of an instance of Address model.
-            city (str): An attribute of an instance of Address model.
-            state (str): An attribute of an instance of Address model.
-            zip_code (int): An attribute of an instance of Address model.
-            country_iso_code (int): An attribute of an instance of Address model.
-            title (str): An attribute of an instance of Address model.
-            address (Address): An instance of Address model.
+        :param number: An attribute of an instance of :class:`lettings.Address`.
+        :type number: int, required
+        :param street: An attribute of an instance of :class:`lettings.Address`.
+        :type street: str, required
+        :param city: An attribute of an instance of :class:`lettings.Address`.
+        :type city: str, required
+        :param state: An attribute of an instance of :class:`lettings.Address`.
+        :type state: str, required
+        :param zip_code: An attribute of an instance of :class:`lettings.Address`.
+        :type zip_code: int, required
+        :param country_iso_code: An attribute of an instance of :class:`lettings.Address`.
+        :type country_iso_code: int, required
+        :param title: An attribute of an instance of :class:`lettings.Address`.
+        :type title: str, required
+        :param address: An instance of :class:`lettings.Address`.
+        :type address: class: `lettings.Address`
         """
 
         cls.address = Address.objects.create(
@@ -81,11 +88,15 @@ class LettingViewTestCase(TestCase):
         cls.letting = Letting.objects.create(title="Test House 1", address=cls.address)
 
 
-class LettingsIndexViewTestCase(TestCase):
+class LettingsIndexViewTestCase(LettingViewTestCase):
     """
     Test case for the index view for lettings.
 
-    This class contains a method to test the behavior of the index view for lettings.
+    This class contains a method to test the behavior of the index view for lettings and inherit from
+    LettingViewTestCase.
+
+    Methods:
+        test_letting_index_view: Method to test letting index view.
     """
 
     def test_letting_index_view(self):
@@ -107,7 +118,12 @@ class LettingsDetailViewTestCase(LettingViewTestCase):
     """
     Test case for the detail view for lettings.
 
-    This class contains methods to test the behavior of the detail view for lettings.
+    This class contains methods to test the behavior of the detail view for lettings and inherit from
+    LettingViewTestCase.
+
+    Methods:
+        test_letting_id_view_successful: Method tests the successful detail view of one :class:`lettings.Letting`.
+        test_letting_id_view_failed: Method tests the failure of one :class:`lettings.Letting` detail view.
     """
 
     def test_letting_id_view_successful(self):

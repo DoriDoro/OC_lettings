@@ -1,10 +1,9 @@
 """
 Models for managing addresses and lettings in the application.
 
-This module defines two models: Address and Letting. The Address model represents
-a physical address with attributes such as number, street, city, state, zip code,
-and country ISO code. The Letting model represents a letting (rental) property with
-a title and a one-to-one relationship with an Address.
+This module defines two models: :class:`lettings.Address` and :class:`lettings.Letting`. The Address model represents
+a physical address with attributes such as number, street, city, state, zip code, and country ISO code.
+The Letting model represents a letting (rental) property with a title and a one-to-one relationship with an Address.
 
 Models:
     Address: Represents a physical address with various attributes.
@@ -65,16 +64,21 @@ class Address(models.Model):
     Represents a physical address with attributes such as number, street, city, state,
     zip code, and country ISO code.
 
-    Attributes:
-        number (PositiveIntegerField): The street number of the address.
-        street (CharField): The name of the street.
-        city (CharField): The name of the city.
-        state (CharField): The state abbreviation (e.g., 'CA' for California).
-        zip_code (PositiveIntegerField): The ZIP code of the address.
-        country_iso_code (CharField): The ISO code of the country (e.g., 'USA' for United States).
-
     Methods:
-        __str__: Returns a string representation of the address.
+        __str__: Returns a string representation of the :class:`lettings.Address`.
+
+    :param number: The street number of the :class:`lettings.Address`.
+    :type number: PositiveIntegerField, required
+    :param street: The name of the street.
+    :type street: CharField, required
+    :param city: The name of the city.
+    :type city: CharField,required
+    :param state: The state abbreviation (e.g., 'CA' for California).
+    :type state: CharField, required
+    :param zip_code: The ZIP code of the :class:`lettings.Address`.
+    :type zip_code: PositiveIntegerField, required
+    :param country_iso_code: The ISO code of the country (e.g., 'USA' for United States).
+    :type country_iso_code: CharField, required
     """
 
     class Meta:
@@ -97,14 +101,15 @@ class Letting(models.Model):
     """
     Model for managing letting properties.
 
-    Represents a letting (rental) property with a title and an associated Address.
-
-    Attributes:
-        title (CharField): The title or name of the letting property.
-        address (OneToOneField): A one-to-one relationship with an Address.
+    Represents a :class:`lettings.Letting` (rental) property with a title and an associated :class:`lettings.Address`.
 
     Methods:
-        __str__: Returns a string representation of the letting property.
+        __str__: Returns a string representation of the :class:`lettings.Letting` property.
+
+    :param title: The title or name of the :class:`lettings.Letting` property.
+    :type title: CharField, required
+    :param address: A one-to-one relationship with an :class:`lettings.Address`.
+    :type address: OneToOneField to :class:`lettings.Address`, required
     """
 
     title = models.CharField(max_length=256)

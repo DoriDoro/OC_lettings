@@ -11,7 +11,7 @@ Attributes:
     reverse: A function provided by Django for generating URLs based on view names.
 
 Classes:
-    CoreViewTestCase: A subclass of TestCase to test the index view.
+    CoreViewTestCase (TestCase): A subclass of TestCase to test the index view.
 
 :param TestCase: A subclass of Django's TestCase class for writing unit tests.
 :param RequestFactory: A class provided by Django for creating mock request objects.

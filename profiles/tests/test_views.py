@@ -6,35 +6,32 @@ in a Django project. It includes tests for creating, updating, deleting profiles
 as well as views for rendering listing and detail views.
 
 Attributes:
-    get_user_model: A function provided by Django to get the currently active user model.
+    get_user_model (Function): A function provided by Django to get the currently active user model.
     UserModel: The user model used in the Django project.
-    TestCase: A subclass of Django's TestCase class for writing unit tests.
-    Http404: An exception raised when a requested object is not found.
-    RequestFactory: A class provided by Django for creating mock request objects.
-    reverse: A function provided by Django for generating URLs based on view names.
+    TestCase (TestCase): A subclass of Django's TestCase class for writing unit tests.
+    Http404 (Exception): An exception raised when a requested object is not found.
+    RequestFactory (RequestFactory): A class provided by Django for creating mock request objects.
+    reverse (Function): A function provided by Django for generating URLs based on view names.
 
 Classes:
     ProfileViewTestCase(TestCase): A subclass of TestCase to test the Profile model and views.
-    ProfileIndexViewTestCase(TestCase): A subclass of TestCase to test the index view for profiles.
+    ProfileIndexViewTestCase(ProfileViewTestCase): A subclass of TestCase to test the index view for profiles.
     ProfileDetailViewTestCase(ProfileViewTestCase): A subclass of TestCase to test the detail
     view for profiles.
 
 Methods:
-    setUpTestData: Method to set up test data before running tests.
-    test_profile_index_view: Method to test the behavior of the index view for profiles.
-    test_profile_id_view_successful: Method to test the behavior of the detail view for a valid
-    profile username.
-    test_profile_id_view_failed: Method to test the behavior of the detail view for an invalid
-    profile username.
+    ProfileViewTestCase.setUpTestData: Method to set up test data before running tests.
+    ProfileIndexViewTestCase.test_profile_index_view: Method to test the behavior of the index view for profiles.
+    ProfileDetailViewTestCase.test_profile_id_view_successful: Method to test the behavior of the detail view for a
+    valid profile username.
+    ProfileDetailViewTestCase.test_profile_id_view_failed: Method to test the behavior of the detail view for an
+    invalid profile username.
 
 :param get_user_model: A function provided by Django to get the currently active user model.
 :param Http404: An exception raised when a requested object is not found.
 :param TestCase: A subclass of Django's TestCase class for writing unit tests.
 :param RequestFactory: A class provided by Django for creating mock request objects.
 :param reverse: A function provided by Django for generating URLs based on view names.
-
-:return: No return value.
-:rtype: None
 """
 
 from django.contrib.auth import get_user_model
@@ -50,21 +47,27 @@ UserModel = get_user_model()
 
 class ProfileViewTestCase(TestCase):
     """
-    Base test case for Profile model and views.
+    Base test case for class:`profile.Profile` model and views.
 
-    This class contains methods to test the behavior of Profile model and views.
-
-    Attributes:
-        USERNAME (str): A string representing the username for test user.
-        USER_EMAIL (str): A string representing the email for test user.
-        USER_PASSWORD (str): A string representing the password for test user.
-        USER_FIRST_NAME (str): A string representing the first name for test user.
-        USER_LAST_NAME (str): A string representing the last name for test user.
-        user (User): An instance of User model.
-        profile (Profile): An instance of Profile model.
+    This class contains methods to test the behavior of class:`profile.Profile` model and views.
 
     Methods:
         setUpTestData: Method to set up test data before running tests.
+
+    :param USERNAME: A string representing the username for test user.
+    :type USERNAME: str, required
+    :param USER_EMAIL: A string representing the email for test user.
+    :type USER_EMAIL: str, required
+    :param USER_PASSWORD: A string representing the password for test user.
+    :type USER_PASSWORD: str, required
+    :param USER_FIRST_NAME: A string representing the first name for test user.
+    :type USER_FIRST_NAME: str, required
+    :param USER_LAST_NAME: A string representing the last name for test user.
+    :type USER_LAST_NAME: str
+    :param user: An instance of :class:`User` model.
+    :type user: class:`User`
+    :param profile: An instance of :class:`profile.Profile` model.
+    :type profile: class:`profile.Profile`
     """
 
     USERNAME = "Test User"
@@ -76,18 +79,24 @@ class ProfileViewTestCase(TestCase):
     @classmethod
     def setUpTestData(cls):
         """
-        Set up test data for the user model.
+        Set up test data for the :class:`User` model.
 
-        Creates a user and a profile instance with predefined test data.
+        Creates a :class:`User` and a :class:`profile.Profile` instance with predefined test data.
 
-        Attributes:
-            username (str): An attribute of an instance of User model.
-            password (str): An attribute of an instance of User model.
-            email (str): An attribute of an instance of User model.
-            first_name (str): An attribute of an instance of User model.
-            last_name (str): An attribute of an instance of User model.
-            user (instance): An instance of a User model.
-            favorite_city (str): An attribute of an instance of Profile model.
+        :param username: An attribute of an instance of :class:`User` model.
+        :type username: str, required
+        :param password: An attribute of an instance of :class:`User` model.
+        :type password: str, required
+        :param email: An attribute of an instance of :class:`User` model.
+        :type email: str, required
+        :param first_name: An attribute of an instance of :class:`User` model.
+        :type first_name: str, required
+        :param last_name: An attribute of an instance of :class:`User` model.
+        :type last_name: str, required
+        :param user: An instance of a :class:`User` model.
+        :type user: class:`User`
+        :param favorite_city: An attribute of an instance of :class:`profile.Profile` model.
+        :type favorite_city: str, required
         """
 
         cls.user = UserModel.objects.create_user(
@@ -101,7 +110,7 @@ class ProfileViewTestCase(TestCase):
         cls.profile = Profile.objects.create(user=cls.user, favorite_city="Test City")
 
 
-class ProfileIndexViewTestCase(TestCase):
+class ProfileIndexViewTestCase(ProfileViewTestCase):
     """
     Test case for the index view for profiles.
 
@@ -119,6 +128,7 @@ class ProfileIndexViewTestCase(TestCase):
         and checks if the response status code is 200, indicating a successful request.
 
         :return: None
+        :rtype: None
         """
 
         request = RequestFactory().get(reverse("profiles:profiles_index"))
@@ -149,6 +159,7 @@ class ProfileDetailViewTestCase(ProfileViewTestCase):
         a successful request.
 
         :return: None
+        :rtype: None
         """
 
         request = RequestFactory().get(
