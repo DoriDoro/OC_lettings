@@ -1,26 +1,19 @@
 """
 Views for managing user profiles in the profiles app.
 
-This module defines views for handling HTTP requests related to user profiles
-in the profiles app of the project.
+This module defines views for handling HTTP requests related to :class:`profiles.Profile` in the
+profiles app of the project.
 
 Views defined here include:
-    - index: Renders the profiles index page, displaying a list of all user profiles.
-    - profile: Renders the details page for a specific user profile identified by username.
-
-Attributes:
-    Profile:
-        Represents user profiles in the application.
-
-Methods:
-    index: Renders the profiles index page with a list of all user profiles.
-    profile: Renders the details page for a specific user profile.
+    - index: Renders the profiles index page, displaying a list of all :class:`profiles.Profile`.
+    - profile: Renders the details page for a specific :class:`profiles.Profile` identified by
+      username.
 
 Usage:
-    These views can be used to display information about user profiles, including
+    These views can be used to display information about :class:`profiles.Profile`, including
     their usernames, favorite cities, or any other profile-related data. They interact
-    with the Profile model to retrieve data from the database and render it in the
-    appropriate templates.
+    with the :class:`profiles.Profile` model to retrieve data from the database and render it in
+    the appropriate templates.
 
 Example:
     To render the profiles index page:
@@ -32,6 +25,12 @@ Example:
         get_object_or_404(Profile, user__username=username)  # Retrieve the profile with the
         specified username.
         render(request, 'profile.html', context)  # Render the details page with the profile data.
+
+:param Letting: Represents a :class:`lettings.Letting` (rental) property in the database.
+:type Letting: class:`lettings.Letting`
+:param render: A module to render templates in Django views.
+:param get_object_or_404: A function provided by Django that retrieves an object from the database
+    or raises a Http404 exception if the object does not exist.
 """
 
 from django.shortcuts import render, get_object_or_404

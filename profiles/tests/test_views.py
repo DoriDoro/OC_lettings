@@ -5,27 +5,21 @@ This module contains test cases for the views and models of the Profiles app
 in a Django project. It includes tests for creating, updating, deleting profiles,
 as well as views for rendering listing and detail views.
 
-Attributes:
-    get_user_model (Function): A function provided by Django to get the currently active user model.
-    UserModel: The user model used in the Django project.
-    TestCase (TestCase): A subclass of Django's TestCase class for writing unit tests.
-    Http404 (Exception): An exception raised when a requested object is not found.
-    RequestFactory (RequestFactory): A class provided by Django for creating mock request objects.
-    reverse (Function): A function provided by Django for generating URLs based on view names.
-
 Classes:
-    ProfileViewTestCase(TestCase): A subclass of TestCase to test the Profile model and views.
-    ProfileIndexViewTestCase(ProfileViewTestCase): A subclass of TestCase to test the index view for profiles.
-    ProfileDetailViewTestCase(ProfileViewTestCase): A subclass of TestCase to test the detail
-    view for profiles.
+    - ProfileViewTestCase(TestCase): A subclass of TestCase to test the Profile model and views.
+    - ProfileIndexViewTestCase(ProfileViewTestCase): A subclass of TestCase to test the index view
+      for profiles.
+    - ProfileDetailViewTestCase(ProfileViewTestCase): A subclass of TestCase to test the detail
+      view for profiles.
 
 Methods:
-    ProfileViewTestCase.setUpTestData: Method to set up test data before running tests.
-    ProfileIndexViewTestCase.test_profile_index_view: Method to test the behavior of the index view for profiles.
-    ProfileDetailViewTestCase.test_profile_id_view_successful: Method to test the behavior of the detail view for a
-    valid profile username.
-    ProfileDetailViewTestCase.test_profile_id_view_failed: Method to test the behavior of the detail view for an
-    invalid profile username.
+    - ProfileViewTestCase.setUpTestData: Method to set up test data before running tests.
+    - ProfileIndexViewTestCase.test_profile_index_view: Method to test the behavior of the index
+      view for profiles.
+    - ProfileDetailViewTestCase.test_profile_id_view_successful: Method to test the behavior of the
+      detail view for a valid profile username.
+    - ProfileDetailViewTestCase.test_profile_id_view_failed: Method to test the behavior of the
+      detail view for an invalid profile username.
 
 :param get_user_model: A function provided by Django to get the currently active user model.
 :param Http404: An exception raised when a requested object is not found.
@@ -52,7 +46,7 @@ class ProfileViewTestCase(TestCase):
     This class contains methods to test the behavior of class:`profile.Profile` model and views.
 
     Methods:
-        setUpTestData: Method to set up test data before running tests.
+        - setUpTestData: Method to set up test data before running tests.
 
     :param USERNAME: A string representing the username for test user.
     :type USERNAME: str, required
@@ -96,7 +90,7 @@ class ProfileViewTestCase(TestCase):
         :param user: An instance of a :class:`User` model.
         :type user: class:`User`
         :param favorite_city: An attribute of an instance of :class:`profile.Profile` model.
-        :type favorite_city: str, required
+        :type favorite_city: str, optional
         """
 
         cls.user = UserModel.objects.create_user(
@@ -117,7 +111,7 @@ class ProfileIndexViewTestCase(ProfileViewTestCase):
     This class contains a method to test the behavior of the index view for profiles.
 
     Methods:
-        test_profile_index_view: Method to test the behavior of the index view for profiles.
+        - test_profile_index_view: Method to test the behavior of the index view for profiles.
     """
 
     def test_profile_index_view(self):
@@ -144,10 +138,10 @@ class ProfileDetailViewTestCase(ProfileViewTestCase):
     This class contains methods to test the behavior of the detail view for profiles.
 
     Methods:
-        test_profile_id_view_successful: Method to test the behavior of the detail view for a valid
-        profile username.
-        test_profile_id_view_failed: Method to test the behavior of the detail view for an invalid
-        profile username.
+        - test_profile_id_view_successful: Method to test the behavior of the detail view for a
+          valid profile username.
+        - test_profile_id_view_failed: Method to test the behavior of the detail view for an
+          invalid profile username.
     """
 
     def test_profile_id_view_successful(self):

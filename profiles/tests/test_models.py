@@ -4,30 +4,29 @@ Test module for profiles app models.
 This module contains test cases for the models of the Profiles app in a Django project.
 It includes tests for creating, updating, and deleting user profiles.
 
-Attributes:
-    get_user_model (Function): A function provided by Django to get the currently active user model.
-    IntegrityError (Exception): An exception raised when a database integrity constraint is violated.
-    TestCase (TestCase): A subclass of Django's TestCase class for writing unit tests.
-    ValueError (Exception): An exception is often raised in Python when an invalid value is assigned to a
-    variable or passed to a function while calling it.
-
 Classes:
-    ModelTestCase (TestCase): A base test case for model testing.
-    UserTestCase (ModelTestCase): A test case for the user model.
-    ProfileTestCase (ModelTestCase): A test case for the profile model.
+    - ModelTestCase (TestCase): A base test case for model testing.
+    - UserTestCase (ModelTestCase): A test case for the user model.
+    - ProfileTestCase (ModelTestCase): A test case for the profile model.
 
 Methods:
-    ModelTestCase.setUpTestData: Method to set up test data before running tests.
-    UserTestCase.test_user_creation_successful: Method to test successful :class:`User` creation.
-    UserTestCase.test_user_creation_failed: Method to test :class:`User` creation with invalid data.
-    UserTestCase.test_user_creation_second_time: Method to test :class:`User` creation when the user already exists.
-    UserTestCase.test_user_delete_successful: Method to test successful :class:`User` deletion.
-    ProfileTestCase.setUp: Method to set up test data for the :class:`profile.Profile` model.
-    ProfileTestCase.test_profile_creation_successful: Method to test successful :class:`profile.Profile` creation.
-    ProfileTestCase.test_profile_delete_successful: Method to test successful :class:`profile.Profile` deletion.
-    ProfileTestCase.test_profile_str: Method to test string representation of the :class:`profile.Profile`.
+    - ModelTestCase.setUpTestData: Method to set up test data before running tests.
+    - UserTestCase.test_user_creation_successful: Method to test successful :class:`User` creation.
+    - UserTestCase.test_user_creation_failed: Method to test :class:`User` creation with invalid
+      data.
+    - UserTestCase.test_user_creation_second_time: Method to test :class:`User` creation when the
+      :class:`User` already exists.
+    - UserTestCase.test_user_delete_successful: Method to test successful :class:`User` deletion.
+    - ProfileTestCase.setUp: Method to set up test data for the :class:`profile.Profile` model.
+    - ProfileTestCase.test_profile_creation_successful: Method to test successful
+      :class:`profile.Profile` creation.
+    - ProfileTestCase.test_profile_delete_successful: Method to test successful
+      :class:`profile.Profile` deletion.
+    - ProfileTestCase.test_profile_str: Method to test string representation of the
+      :class:`profile.Profile`.
 
-:param get_user_model: A function provided by Django to get the currently active :class:`User` model.
+:param get_user_model: A function provided by Django to get the currently active :class:`User`
+    model.
 :param TestCase: A subclass of Django's TestCase class for writing unit tests.
 :param IntegrityError: An exception raised when a database integrity constraint is violated.
 :param ValueError: An exception is often raised in Python when an invalid value is assigned to a
@@ -48,7 +47,7 @@ class ModelTestCase(TestCase):
     Base test case class for model testing.
 
     Methods:
-        setUpTestData: Method to set up test data before running tests.
+        - setUpTestData: Method to set up test data before running tests.
 
     :param USERNAME: Username for test :class:`User`.
     :type USERNAME: str, required
@@ -101,10 +100,13 @@ class UserTestCase(ModelTestCase):
     Test case class for the :class:`User` model which inherits from ModelTestCase.
 
     Methods:
-        test_user_creation_successful: Method to test the successful creation of a :class:`User` instance.
-        test_user_creation_failed: Method to test a failure of creation of a :class:`User` instance.
-        test_user_creation_second_time: Method to test creation of :class:`User` instance a second time.
-        test_user_delete_successful: Method to test the deletion of a :class:`User` instance.
+        - test_user_creation_successful: Method to test the successful creation of a :class:`User`
+          instance.
+        - test_user_creation_failed: Method to test a failure of creation of a :class:`User`
+          instance.
+        - test_user_creation_second_time: Method to test creation of :class:`User` instance a
+          second time.
+        - test_user_delete_successful: Method to test the deletion of a :class:`User` instance.
 
     :param TEST_USERNAME: Test username for new :class:`User`.
     :type TEST_USERNAME: str, required
@@ -169,8 +171,8 @@ class UserTestCase(ModelTestCase):
         """
         Test failed creation of a :class:`User` instance when the user already exists.
 
-        This method tests the scenario where a :class:`User` instance creation fails due to an attempt to create
-        a user with the same username.
+        This method tests the scenario where a :class:`User` instance creation fails due to an
+        attempt to create a :class:`User` with the same username.
 
         :raises IntegrityError: If attempting to create a :class:`User` with the same username.
         """
@@ -201,13 +203,17 @@ class UserTestCase(ModelTestCase):
 
 class ProfileTestCase(ModelTestCase):
     """
-    Test case class for testing the :class:`profile.Profile` model which inherits from ModelTestCase.
+    Test case class for testing the :class:`profile.Profile` model which inherits from
+    ModelTestCase.
 
     Methods:
-        setUp: Method to set up test data before running tests.
-        test_profile_creation_successful: Method to successfully create a :class:`profile.Profile` instance.
-        test_profile_delete_successful: Method to test the deletion of a :class:`profile.Profile` instance.
-        test_profile_str: Method to test the string representative of the :class:`profile.Profile` instance.
+        - setUp: Method to set up test data before running tests.
+        - test_profile_creation_successful: Method to successfully create a
+          :class:`profile.Profile` instance.
+        - test_profile_delete_successful: Method to test the deletion of a :class:`profile.Profile`
+          instance.
+        - test_profile_str: Method to test the string representative of the
+          :class:`profile.Profile` instance.
 
     :param FAVORITE_CITY: Test favorite city for the profile.
     :type FAVORITE_CITY: str, required
@@ -224,7 +230,7 @@ class ProfileTestCase(ModelTestCase):
         :param user: An attribute of an instance of :class:`User`.
         :type user: class:`User` instance
         :param favorite_city: An attribute of an instance of :class:`User`.
-        :type favorite_city: str, required
+        :type favorite_city: str, optional
         """
 
         super().setUp()

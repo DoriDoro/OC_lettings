@@ -18,6 +18,8 @@ Usage:
     This file serves as the central URL configuration for the entire project. It includes
     URL patterns for various parts of the project, such as admin interfaces, main pages,
     and specific app functionalities.
+
+:param admin: Django admin module for managing the administrative interface of a Django project.
 """
 
 from django.contrib import admin

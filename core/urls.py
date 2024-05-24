@@ -20,9 +20,9 @@ from django.urls import path
 
 from core.views import index, trigger_error
 
-app_name = 'core'
+app_name = "core"
 
 urlpatterns = [
-    path('', index, name='index'),
-    path('sentry-debug/', trigger_error, name='trigger_error_sentry'),
+    path("", index, name="index"),
+    path("sentry-debug/", trigger_error, name="trigger_error_sentry"),
 ]
