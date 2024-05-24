@@ -46,6 +46,12 @@ Example:
             country_iso_code='USA'
         )
         letting = Letting.objects.create(title='Cozy Apartment', address=address)
+
+:param MaxValueValidator: Imports MaxValueValidator from Django's core validators for model
+field validation.
+:param MinLengthValidator: Imports MinLengthValidator from Django's core validators for model
+field validation.
+:param models: Imports models module from Django's database package to define database models.
 """
 
 from django.core.validators import MaxValueValidator, MinLengthValidator

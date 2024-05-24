@@ -14,13 +14,17 @@ Attributes:
 Classes:
     LettingViewTestCase: A subclass of TestCase to test the Letting model and views.
     LettingsIndexViewTestCase: A subclass of TestCase to test the index view for lettings.
-    LettingsDetailViewTestCase: A subclass of LettingViewTestCase to test the detail view for lettings.
+    LettingsDetailViewTestCase: A subclass of LettingViewTestCase to test the detail view for
+    lettings.
 
 Methods:
     LettingViewTestCase.setUpTestData: Method to set up test data before running tests.
-    LettingsIndexViewTestCase.test_letting_index_view: Method to test the behavior of the index view for lettings.
-    LettingsDetailViewTestCase.test_letting_id_view_successful: Method to test the behavior of the detail view for a valid letting ID.
-    LettingsDetailViewTestCase.test_letting_id_view_failed: Method to test the behavior of the detail view for an invalid letting ID.
+    LettingsIndexViewTestCase.test_letting_index_view: Method to test the behavior of the index
+    view for lettings.
+    LettingsDetailViewTestCase.test_letting_id_view_successful: Method to test the behavior of the
+    detail view for a valid letting ID.
+    LettingsDetailViewTestCase.test_letting_id_view_failed: Method to test the behavior of the
+    detail view for an invalid letting ID.
 
 :param Http404: An exception raised when a requested object is not found.
 :param TestCase: A subclass of Django's TestCase class for writing unit tests.
@@ -53,6 +57,16 @@ class LettingViewTestCase(TestCase):
         Set up test data for the LettingViewTestCase class.
 
         Creates an Address instance and a Letting instance for testing purposes.
+
+        Attributes:
+            number (int): An attribute of an instance of Address model.
+            street (str): An attribute of an instance of Address model.
+            city (str): An attribute of an instance of Address model.
+            state (str): An attribute of an instance of Address model.
+            zip_code (int): An attribute of an instance of Address model.
+            country_iso_code (int): An attribute of an instance of Address model.
+            title (str): An attribute of an instance of Address model.
+            address (Address): An instance of Address model.
         """
 
         cls.address = Address.objects.create(

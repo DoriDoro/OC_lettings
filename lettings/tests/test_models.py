@@ -16,15 +16,23 @@ Classes:
 
 Methods:
     ModelTestCase.setUpTestData: Method to set up test data for the Address model.
-    AddressTestCase.test_address_creation_successful: Method to test successful creation of an Address instance.
-    AddressTestCase.test_address_creation_failed: Method to test failed creation of an Address instance.
-    AddressTestCase.test_address_str: Method to test the string representation of an Address instance.
-    AddressTestCase.test_address_delete_successful: Method to test successful deletion of an Address instance.
+    AddressTestCase.test_address_creation_successful: Method to test successful creation of an
+    Address instance.
+    AddressTestCase.test_address_creation_failed: Method to test failed creation of an Address
+    instance.
+    AddressTestCase.test_address_str: Method to test the string representation of an Address
+    instance.
+    AddressTestCase.test_address_delete_successful: Method to test successful deletion of an
+    Address instance.
     LettingTestCase.setUp: Method to set up test data for the Letting model.
-    LettingTestCase.test_letting_create_successful: Method to test successful creation of a Letting instance.
-    LettingTestCase.test_letting_create_failed: Method to test failed creation of a Letting instance.
-    LettingTestCase.test_letting_delete_successful: Method to test successful deletion of a Letting instance.
-    LettingTestCase.test_letting_str: Method to test the string representation of a Letting instance.
+    LettingTestCase.test_letting_create_successful: Method to test successful creation of a
+    Letting instance.
+    LettingTestCase.test_letting_create_failed: Method to test failed creation of a Letting
+    instance.
+    LettingTestCase.test_letting_delete_successful: Method to test successful deletion of a
+    Letting instance.
+    LettingTestCase.test_letting_str: Method to test the string representation of a Letting
+    instance.
 
 :param TestCase: A subclass of Django's TestCase class for writing unit tests.
 """
