@@ -1,29 +1,29 @@
 """
 Model for managing user profiles in the application.
 
-This module defines the Profile model, which represents user profiles in the application.
-Each Profile is associated with a corresponding User model instance, establishing a one-to-one
-relationship between users and their profiles.
+This module defines the :class:`lettings.Profile` model, which represents user profiles in the
+application. Each Profile is associated with a corresponding :class:`User` model instance,
+establishing a one-to-one relationship between users and their profiles.
 
-Attributes:
-    user (OneToOneField): A one-to-one relationship with the User model, linking each profile
-                          to a user account.
-    favorite_city (CharField): A field for storing the user's favorite city. This field is optional
-                                and can be left blank.
+Model:
+    - Profile: Represents a :class:`User` instance with a favourite_city.
 
 Methods:
-    __str__(): Returns a string representation of the profile, which is the username of the
-        associated user.
+    - __str__(): Returns a string representation of the :class:`profile.Profile`, which is the
+      username of the associated user.
 
 Usage:
     The Profile model can be used to store additional information about users beyond what is
-    provided by the built-in User model. This could include profile pictures, bio information,
-    preferences, and more.
+    provided by the built-in User model. In this :class:`profile.Profile` is just a favorite_city
+    added.
 
 Example:
     To create a new user profile:
         user = User.objects.create(username='example_user', ...)
         profile = Profile.objects.create(user=user, favorite_city='New York')
+
+:param User: Import the built-in User model from Django's authentication framework.
+:param models: Import Django's database models module.
 """
 
 from django.contrib.auth.models import User
@@ -34,26 +34,26 @@ class Profile(models.Model):
     """
     Model for managing user profiles in the application.
 
-    Represents user profiles in the application, associated with corresponding User model
+    Represents user profiles in the application, associated with corresponding :class:`User` model
     instances.
 
-    Attributes:
-        user (OneToOneField): A one-to-one relationship with the User model, linking each profile
-                                to a user account.
-        favorite_city (CharField): A field for storing the user's favorite city. This field is
-                                    optional and can be left blank.
-
     Methods:
-        __str__(): Returns a string representation of the profile.
+        - __str__(): Returns a string representation of the :class:`profile.Profile`.
 
     Usage:
-        The Profile model can be used to store additional information about users beyond what is
-        provided by the built-in User model.
+        The :class:`profile.Profile` model can be used to store additional information about users
+        beyond what is provided by the built-in :class:`User` model.
 
     Example:
         To create a new user profile:
             user = User.objects.create(username='example_user', ...)
             profile = Profile.objects.create(user=user, favorite_city='New York')
+
+    :param user: A one-to-one relationship with the :class:`User` model, linking each profile to a
+    :class:`User` account.
+    :type user: OneToOneField to :class:`User`
+    :param favorite_city: A field for storing the user's favorite city.
+    :type favorite_city: CharField, optional
     """
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)

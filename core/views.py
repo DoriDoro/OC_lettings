@@ -12,7 +12,10 @@ Note:
     These views are simple render functions that use Django's 'render' shortcut
     to render templates. They are mapped to specific URLs in the URL configuration
     (urls.py) of the core app.
+
+:param render: A module to render templates in Django views.
 """
+
 from django.shortcuts import render
 
 
@@ -22,20 +25,26 @@ def index(request):
 
     This view renders the homepage template ('index.html').
 
-    Parameters:
-        request (HttpRequest): The HTTP request object.
+    :param HttpRequest request: The HTTP request object.
+    :return: Rendered homepage template.
+    :rtype: HttpResponse
     """
 
-    return render(request, 'index.html')
+    return render(request, "index.html")
 
 
 def trigger_error(request):
     """
-    example for production:
-    if request.user.is_authenticated and request.user.is_superuser:
-        raise 42
-    return HttpResponse(200)
+    Trigger an error for testing Sentry.
+
+    This view is used for testing purposes to trigger an error in order to
+    test Sentry's error tracking functionality.
+
+    :param HttpRequest request: The HTTP request object.
+    :return: None
+    :rtype: None
     """
 
+    # Example for triggering an error
     division_by_zero = 1 / 0
-    return division_by_zero
+    return division_by_zero  # This will raise a ZeroDivisionError
