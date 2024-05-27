@@ -10,17 +10,15 @@ import os
 import sys
 import django
 
+from datetime import date
+
 sys.path.insert(0, os.path.abspath(".."))
 # Specify the Django settings module
-# os.environ["DJANGO_SETTINGS_MODULE"] = "oc_lettings_site.settings-local"
-os.environ['SECRET_KEY'] = 'super-secret'
+os.environ["DJANGO_SETTINGS_MODULE"] = "docs.django_settings"
 django.setup()
 
-# Set the path to the Python interpreter
-# python_interpreter = "/oc_lettings/venv/bin/python"
-
 project = "Orange County Lettings"
-copyright = "2024, DoriDoro"
+copyright = f"{date.today().year}, DoriDoro"
 author = "DoriDoro"
 release = "0.1"
 
