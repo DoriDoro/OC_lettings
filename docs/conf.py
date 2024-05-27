@@ -12,7 +12,8 @@ import django
 
 sys.path.insert(0, os.path.abspath(".."))
 # Specify the Django settings module
-os.environ["DJANGO_SETTINGS_MODULE"] = "oc_lettings_site.settings-local"
+# os.environ["DJANGO_SETTINGS_MODULE"] = "oc_lettings_site.settings-local"
+os.environ['SECRET_KEY'] = 'super-secret'
 django.setup()
 
 # Set the path to the Python interpreter
