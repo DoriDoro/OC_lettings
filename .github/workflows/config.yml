@@ -31,7 +31,7 @@ jobs:
           DEBUG: ${{ secrets.DEBUG }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: |
-          coverage run --source='.' --omit='*/migrations/*' manage.py test
+          coverage run --source='.' --omit='*/migrations/*' manage.py test --settings oc_lettings_site.settings-ci
           coverage report
 
   docker:

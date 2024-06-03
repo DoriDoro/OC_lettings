@@ -15,9 +15,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = os.environ.get("DEBUG", "False")
-DEBUG = os.environ.get("DEBUG", "False").lower() in ["true", "1", "t", "yes", "y"]
-# DEBUG = 'RENDER' not in os.environ
+DEBUG = False
 
 # set an empty list as default
 ALLOWED_HOSTS = (
@@ -144,8 +142,3 @@ if SENTRY_DSN:
         # We recommend adjusting this value in production.
         profiles_sample_rate=1.0,
     )
-
-try:
-    from oc_lettings_site.settings_local import *  # noqa
-except ImportError:
-    pass
