@@ -1,5 +1,5 @@
-oc_lettings
-===========
+Orange_Country_lettings Project
+===============================
 
 .. toctree::
    :maxdepth: 4
