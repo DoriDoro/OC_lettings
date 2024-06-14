@@ -45,7 +45,7 @@ jobs:
       ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
       DEBUG: ${{ secrets.DEBUG }}
       SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
-      COMMIT_HASH: ${{ github.sha::7 }}
+      COMMIT_HASH: ${{ github.sha }}
 
     steps:
       - name: Checkout repository
