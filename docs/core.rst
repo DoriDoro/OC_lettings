@@ -1,5 +1,5 @@
-core package
-============
+core app package
+================
 
 Submodules
 ----------

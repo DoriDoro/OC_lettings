@@ -1,5 +1,5 @@
-profiles package
-================
+profiles app package
+====================
 
 Subpackages
 -----------

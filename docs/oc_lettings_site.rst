@@ -1,4 +1,4 @@
-oc\_lettings\_site package
+oc\_lettings\_site project
 ==========================
 
 Submodules

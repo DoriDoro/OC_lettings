@@ -1,5 +1,5 @@
-lettings package
-================
+lettings app package
+====================
 
 Subpackages
 -----------
