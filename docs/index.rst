@@ -9,6 +9,7 @@ Welcome to Orange County Lettings's documentation!
 .. toctree::
    :maxdepth: 2
 
+   project_description
    installation
    modules
 
