@@ -15,6 +15,7 @@ setup_local_env:
 install:
 	@python -m pip install --upgrade pip
 	@pip install -r requirements.txt
+	@pip install -r docs/docs_requirements.txt
 	@python manage.py migrate
 	@gunicorn oc_lettings_site.wsgi:application
 

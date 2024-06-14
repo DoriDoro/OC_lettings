@@ -34,6 +34,8 @@ jobs:
           coverage run --source='.' --omit='*/migrations/*' manage.py test --settings oc_lettings_site.settings-ci
           coverage report
 
+# create a job for updating the documentation
+
   docker:
     name: Docker
     runs-on: ubuntu-latest
@@ -53,6 +55,7 @@ jobs:
 
       - name: Tag the Docker image
         run: docker tag oc_lettings:latest doridoro/oc_lettings_site:latest
+        # instead of ':latest' use the commit from GitHub
 
       - name: Login to DockerHub
         uses: docker/login-action@v3
@@ -62,6 +65,7 @@ jobs:
 
       - name: Push Docker image to Docker Hub
         run: docker push doridoro/oc_lettings_site:latest
+        # instead of ':latest' use the commit from GitHub
 
 #  docker_actions:
 #    name: Docker
