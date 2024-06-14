@@ -19,6 +19,16 @@ install:
 	@python manage.py migrate
 	@gunicorn oc_lettings_site.wsgi:application
 
+pull_docker_image:
+	@docker login; \
+	image="doridoro/oc_lettings_site"; \
+	tag=$$(curl -s "https://registry.hub.docker.com/v2/repositories/$$image/tags/" | python3 -c "import sys, json; print(max(json.load(sys.stdin)['results'], key=lambda x: x['last_updated'])['name'])"); \
+	if [ -z "$$tag" ]; then \
+	    echo "Error: Failed to fetch Docker image tag."; \
+	    exit 1; \
+	fi; \
+	docker pull "$$image:$$tag"
+
 setup_install: setup_local_env install
 virtual_linux_setup_install: virtual_env_linux setup_local_env install
 virtual_windows_setup_install: virtual_env_windows setup_local_env install
