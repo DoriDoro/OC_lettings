@@ -12,6 +12,12 @@ jobs:
   test_app:
     name: Testing the app
     runs-on: ubuntu-latest
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
+      DEBUG: ${{ secrets.DEBUG }}
+      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -25,11 +31,6 @@ jobs:
         run: flake8
 
       - name: Run app tests
-        env:
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
-          ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
-          DEBUG: ${{ secrets.DEBUG }}
-          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: |
           coverage run --source='.' --omit='oc_lettings_site/settings*','*/migrations/*' manage.py test --settings oc_lettings_site.settings-ci
           coverage report --fail-under=80
@@ -39,23 +40,23 @@ jobs:
   docker:
     name: Docker
     runs-on: ubuntu-latest
+    env:
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
+      DEBUG: ${{ secrets.DEBUG }}
+      SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+      GITHUB-SHA: ${{ github.sha }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Build the Docker image
-        env:
-          SECRET_KEY: ${{ secrets.SECRET_KEY }}
-          ALLOWED_HOSTS: ${{ secrets.ALLOWED_HOSTS }}
-          DEBUG: ${{ secrets.DEBUG }}
-          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: |
           docker build -t oc_lettings .
           docker images
 
       - name: Tag the Docker image
-        env:
-          GITHUB-SHA: ${{ github.sha }}
         run: |
           COMMIT_HASH=${GITHUB_SHA::7}
           docker tag oc_lettings:latest doridoro/oc_lettings_site:$COMMIT_HASH
@@ -67,7 +68,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Push Docker image to Docker Hub
-        run: docker push doridoro/oc_lettings_site:latest
+        run: docker push doridoro/oc_lettings_site:$COMMIT_HASH
 
 #  docker_actions:
 #    name: Docker
