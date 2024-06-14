@@ -57,7 +57,7 @@ jobs:
           docker images
 
       - name: Tag the Docker image
-        run: docker tag oc_lettings:latest doridoro/oc_lettings_site:$COMMIT_HASH
+        run: docker tag oc_lettings:latest doridoro/oc_lettings_site:$COMMIT_HASH::7
 
       - name: Login to DockerHub
         uses: docker/login-action@v3
@@ -66,7 +66,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Push Docker image to Docker Hub
-        run: docker push doridoro/oc_lettings_site:$COMMIT_HASH
+        run: docker push doridoro/oc_lettings_site:$COMMIT_HASH::7
 
 #  docker_actions:
 #    name: Docker
