@@ -3,76 +3,120 @@
 ## Description:
 Project 13 OpenClassrooms Path - Orange Country Lettings -- Scale a Django application using a modular architecture 
 
-Work in progress ...
+For this last project of the OpenClassrooms Python Developer path, I undertook the task of 
+refactoring a Django application to enhance its efficiency and maintainability. As part of this 
+process, I meticulously crafted unit tests using Django's TestCases to ensure the reliability and 
+integrity of the codebase. Additionally, I rigorously verified the codebase using flake8 to detect
+and rectify any syntax errors or style violations, ensuring adherence to best practices.
 
-### Prérequis
+To further fortify the project, I aimed for a minimum test coverage of 80%, employing tools such 
+as coverage.py to gauge and improve the comprehensiveness of the tests.
 
-- Compte GitHub avec accès en lecture à ce repository
-- Git CLI
-- SQLite3 CLI
-- Interpréteur Python, version 3.6 ou supérieure
+After the successful refactoring, I encapsulated the Django application within a Docker image 
+using a Dockerfile, facilitating consistent and reproducible deployment environments. This Docker 
+image was subsequently hosted on Docker Hub for accessibility and distribution purposes.
 
-Dans le reste de la documentation sur le développement local, il est supposé que la commande `python` de votre OS shell exécute l'interpréteur Python ci-dessus (à moins qu'un environnement virtuel ne soit activé).
+To automate the deployment process, I implemented a GitHub Actions pipeline, configuring it to 
+build, test, and deploy the project seamlessly. Leveraging the power of Render for deployment, 
+I orchestrated the deployment pipeline to seamlessly transition the refactored Django application 
+from development to production environments.
 
-### macOS / Linux
+For deployment, I employed Gunicorn as the HTTP server and Whitenoise for serving static files, 
+ensuring efficient and secure deployment of the Django application. This holistic approach to 
+project management and deployment has not only optimized the performance and reliability of the 
+Django application but also streamlined the deployment process for future iterations. My last 
+step was to document my project with Read the Docs and Sphinx.
 
-#### Cloner le repository
+---
+## Documentation
+You can find a detailed documentation  for the Django project of Orange Country Lettings 
+on [Read-the-Docs](https://orange-country-lettings.readthedocs.io/en/latest/) 
 
-- `cd /path/to/put/project/in`
-- `git clone https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings-FR.git`
+---
 
-#### Créer l'environnement virtuel
+## Installation
+### Possibility 1: Retrieving the Latest Docker Image
 
-- `cd /path/to/Python-OC-Lettings-FR`
-- `python -m venv venv`
-- `apt-get install python3-venv` (Si l'étape précédente comporte des erreurs avec un paquet non trouvé sur Ubuntu)
-- Activer l'environnement `source venv/bin/activate`
-- Confirmer que la commande `python` exécute l'interpréteur Python dans l'environnement virtuel
-`which python`
-- Confirmer que la version de l'interpréteur Python est la version 3.6 ou supérieure `python --version`
-- Confirmer que la commande `pip` exécute l'exécutable pip dans l'environnement virtuel, `which pip`
-- Pour désactiver l'environnement, `deactivate`
 
-#### Exécuter le site
+*Ensure you have your Docker Hub login credentials ready.*
 
-- `cd /path/to/Python-OC-Lettings-FR`
-- `source venv/bin/activate`
-- `pip install --requirement requirements.txt`
-- `python manage.py runserver`
-- Aller sur `http://localhost:8000` dans un navigateur.
-- Confirmer que le site fonctionne et qu'il est possible de naviguer (vous devriez voir plusieurs profils et locations).
+Login to Docker Hub and pull the Latest Docker Image:
 
-#### Linting
+`$ make pull_docker_image`
 
-- `cd /path/to/Python-OC-Lettings-FR`
-- `source venv/bin/activate`
-- `flake8`
+Verify the Pulled Image and get the ``TAG``:
 
-#### Tests unitaires
+`$ docker images`
 
-- `cd /path/to/Python-OC-Lettings-FR`
-- `source venv/bin/activate`
-- `pytest`
+Run the Docker Container and replace <tag> with ``TAG`` from command $ docker images:
 
-#### Base de données
+`$ docker run -e SECRET_KEY=secret -p 8000:8000 doridoro/oc_lettings_site:<tag> python manage.py collectstatic && gunicorn oc_lettings_site.wsgi:application`
 
-- `cd /path/to/Python-OC-Lettings-FR`
-- Ouvrir une session shell `sqlite3 oc-lettings-site.sqlite3`
-- Se connecter à la base de données `.open oc-lettings-site.sqlite3`
-- Afficher les tables dans la base de données `.tables`
-- Afficher les colonnes dans le tableau des profils, `pragma table_info(oc-lettings-site-profile);`
-- Lancer une requête sur la table des profils, `select user_id, favorite_city from
-  Python-OC-Lettings-FR_profile where favorite_city like 'B%';`
-- `.quit` pour quitter
+### Possibility 2: Clone the GitHub repository
 
-#### Panel d'administration
+**1) Clone the GitHub repository**
 
-- Aller sur `http://localhost:8000/admin`
-- Connectez-vous avec l'utilisateur `admin`, mot de passe `Abc1234!`
+`$ git clone https://github.com/DoriDoro/OC_lettings.git`
+`$ cd OC_lettings`
 
-### Windows
 
-Utilisation de PowerShell, comme ci-dessus sauf :
+**2) Create a SECRET_KEY**
 
-- Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
-- Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+create a `SECRET_KEY` with command:
+
+`$ make generate_secret_key`
+
+and replace the ``SECRET_KEY`` in file: oc_lettings_site/settings-local-template
+
+
+**3) Install all dependencies**
+
+choose a simple setup including creating a virtual environment, set up the
+`DJANGO_SETTINGS_MODULE` in terminal and install all dependencies:
+
+1.1) for Linux/Mac:
+
+`$ make virtual_linux_setup_install`
+
+**Description:** This command is tailored for Linux and macOS environments. It first sets up a
+virtual environment to isolate Python dependencies, then configures the local environment variables
+(``DJANGO_SETTINGS_MODULE``), and finally installs all project dependencies, updates pip,
+migrates the database, and starts the Django server with gunicorn.
+
+**Usage:** Ideal for ensuring a clean and isolated development environment on Linux and macOS
+systems, enhancing dependency management and consistency across different setups.
+
+1.2) for Windows:
+
+`$ make virtual_windows_setup_install`
+
+**Description:** Designed for Windows environments, this command initiates a virtual environment to
+isolate Python dependencies, sets up the local environment variables (``DJANGO_SETTINGS_MODULE``),
+installs all project dependencies, updates pip, migrates the database, and starts the Django server
+with gunicorn.
+
+**Usage:** Ensures consistent dependency management and environment setup on Windows systems,
+optimizing the development workflow and maintaining project integrity across different platforms.
+
+1.3) or create your own virtual environment and use:
+
+`$ make setup_install`
+
+Description: This command sets up the local environment variables (`DJANGO_SETTINGS_MODULE`) and
+then installs all project dependencies, updates pip, migrates the database using
+`python manage.py migrate`, and starts the Django server with gunicorn.
+
+Usage: It combines the functionalities of setting up environment variables and installing
+dependencies, crucial for initializing the Django application in various environments.
+
+**4) Run the server**
+
+1. `$ python manage.py runserver` or
+2. `$ gunicorn oc_lettings_site.wsgi:application`
+
+and navigate to http://127.0.0.1:8000 in your browser
+
+#### Admin panel
+
+- navigate to `http://localhost:8000/admin`
+- use the login details: username: `admin`and password: `Abc1234!`
