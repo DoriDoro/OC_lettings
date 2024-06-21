@@ -83,7 +83,7 @@ and replace the ``SECRET_KEY`` in file: oc_lettings_site/settings-local-template
 choose a simple setup including creating a virtual environment, setup the
 ``DJANGO_SETTINGS_MODULE`` in terminal and install all dependencies:
 
-1.1) for Linux/Mac: ::
+3.1) for Linux/Mac: ::
 
 $ make virtual_linux_setup_install
 
@@ -95,7 +95,7 @@ migrates the database, and starts the Django server with gunicorn.
 **Usage:** Ideal for ensuring a clean and isolated development environment on Linux and macOS
 systems, enhancing dependency management and consistency across different setups.
 
-1.2) for Windows: ::
+3.2) for Windows: ::
 
 $ make virtual_windows_setup_install
 
@@ -107,7 +107,7 @@ with gunicorn.
 **Usage:** Ensures consistent dependency management and environment setup on Windows systems,
 optimizing the development workflow and maintaining project integrity across different platforms.
 
-1.3) or create your own virtual environment and use: ::
+3.3) or create your own virtual environment and use: ::
 
 $ make setup_install
 
