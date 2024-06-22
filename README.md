@@ -1,7 +1,8 @@
 # Orange County Lettings
 
 ## Description:
-Project 13 OpenClassrooms Path - Orange Country Lettings -- Scale a Django application using a modular architecture 
+Project 13 OpenClassrooms Path - Orange Country Lettings -- 
+Scale a Django application using a modular architecture 
 
 For this last project of the OpenClassrooms Python Developer path, I undertook the task of 
 refactoring a Django application to enhance its efficiency and maintainability. As part of this 
@@ -29,11 +30,22 @@ step was to document my project with Read the Docs and Sphinx.
 
 ---
 ## Documentation
-You can find a detailed documentation  for the Django project of Orange Country Lettings 
+You can find a detailed documentation for the Django project of Orange Country Lettings 
 on [Read-the-Docs](https://orange-country-lettings.readthedocs.io/en/latest/) 
 
 ---
+## Deployed on Render
+This project has been successfully deployed on [Render](https://render.com/)! Render is a cloud 
+platform that makes it easy to deploy and manage applications, ensuring that our project is 
+scalable, reliable, and accessible from anywhere. 
+You can access our live project deployment on Render using the following link:
 
+[Orange Country Lettings-Project URL](https://oc-lettings-site-latest-c1cc.onrender.com)
+
+Feel free to explore the application, and don't hesitate to provide feedback or report any 
+issues you encounter.
+
+---
 ## Installation
 ### Possibility 1: Retrieving the Latest Docker Image
 

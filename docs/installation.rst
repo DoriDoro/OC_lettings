@@ -25,13 +25,37 @@ and development workflow:
         staging, production, etc.).
 
     ``install``:
-        This comprehensive command automates several critical steps:
-            Updates pip to the latest version to ensure dependency management is up-to-date.
-            Installs all project dependencies listed in requirements.txt or Pipfile using pip.
-            Executes Django's database migration (``python manage.py migrate``), ensuring the
-            database schema is synchronized with the current state of our Django models.
-            Starts the Django server using gunicorn, a production-ready WSGI server, to serve our
-            application.
+        This comprehensive command automates several critical steps. Updates pip to the latest
+        version to ensure dependency management is up-to-date. Installs all project dependencies
+        listed in requirements.txt or Pipfile using pip. Executes Django's database migration
+        (``python manage.py migrate``), ensuring the database schema is synchronized with the
+        current state of our Django models. Starts the Django server using gunicorn, a
+        production-ready WSGI server, to serve our application.
+
+    ``pull_docker_image_jq``:
+        The script pull_docker_image_jq is designed to automate the process of pulling the latest
+        Docker image from a Docker Hub repository. It requires the installation of curl and jq
+        on your local machine to fetch the latest image tag. The script then logs in to Docker,
+        retrieves the most recently updated tag of the specified Docker image, and pulls that
+        image.
+            **Requirements**
+            Before running the ``pull_docker_image_jq`` script, you need to ensure that curl and jq
+            are installed on your system. These tools are used to fetch and parse the latest
+            Docker image tag.
+
+    ``pull_docker_image_python``:
+        The script pull_docker_image_python is designed to automate the process of pulling the
+        latest Docker image from a specified Docker Hub repository. It leverages curl to fetch
+        the available tags of the image and utilizes Python to parse and determine the most
+        recently updated tag. This script is particularly useful for maintaining up-to-date
+        Docker images in a development or deployment workflow.
+            **Requirements**
+            The script ``pull_docker_image_python`` is designed to automate the process of pulling
+            the latest Docker image from a specified Docker Hub repository. It leverages curl to
+            fetch the available tags of the image and utilizes Python to parse and determine
+            the most recently updated tag. This script is particularly useful for maintaining
+            up-to-date Docker images in a development or deployment workflow.
+
 
 These ``make`` commands collectively streamline our development process, ensuring consistency and
 efficiency across different operating systems and project environments. By automating these tasks,
@@ -46,7 +70,7 @@ Possibility 1: Retrieving the Latest Docker Image
 
 Login to Docker Hub and pull the Latest Docker Image: ::
 
-$ make pull_docker_image
+$ make pull_docker_image_python
 
 Verify the Pulled Image and get the ``TAG``: ::
 
