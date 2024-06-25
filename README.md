@@ -49,18 +49,17 @@ issues you encounter.
 ## Installation
 ### Possibility 1: Retrieving the Latest Docker Image
 
-
 *Ensure you have your Docker Hub login credentials ready.*
 
 Login to Docker Hub and pull the Latest Docker Image:
 
 `$ make pull_docker_image`
 
-Verify the Pulled Image and get the ``TAG``:
+Verify the Pulled Image and get the `TAG`:
 
 `$ docker images`
 
-Run the Docker Container and replace <tag> with ``TAG`` from command $ docker images:
+Run the Docker Container and replace <tag> with `TAG` from command `$ docker images`:
 
 `$ docker run -e SECRET_KEY=secret -p 8000:8000 doridoro/oc_lettings_site:<tag> python manage.py collectstatic && gunicorn oc_lettings_site.wsgi:application`
 
@@ -68,7 +67,7 @@ Run the Docker Container and replace <tag> with ``TAG`` from command $ docker im
 
 **1) Clone the GitHub repository**
 
-`$ git clone https://github.com/DoriDoro/OC_lettings.git`
+`$ git clone https://github.com/DoriDoro/OC_lettings.git` <br>
 `$ cd OC_lettings`
 
 
@@ -92,7 +91,7 @@ choose a simple setup including creating a virtual environment, set up the
 
 **Description:** This command is tailored for Linux and macOS environments. It first sets up a
 virtual environment to isolate Python dependencies, then configures the local environment variables
-(``DJANGO_SETTINGS_MODULE``), and finally installs all project dependencies, updates pip,
+(`DJANGO_SETTINGS_MODULE`), and finally installs all project dependencies, updates pip,
 migrates the database, and starts the Django server with gunicorn.
 
 **Usage:** Ideal for ensuring a clean and isolated development environment on Linux and macOS
@@ -103,7 +102,7 @@ systems, enhancing dependency management and consistency across different setups
 `$ make virtual_windows_setup_install`
 
 **Description:** Designed for Windows environments, this command initiates a virtual environment to
-isolate Python dependencies, sets up the local environment variables (``DJANGO_SETTINGS_MODULE``),
+isolate Python dependencies, sets up the local environment variables (`DJANGO_SETTINGS_MODULE`),
 installs all project dependencies, updates pip, migrates the database, and starts the Django server
 with gunicorn.
 
