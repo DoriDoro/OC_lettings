@@ -45,6 +45,16 @@ pull_docker_image_python:
 	fi; \
 	docker pull "$$image:$$tag"
 
+# run the pulled docker image locally
+run_docker_image:
+	image="doridoro/oc_lettings_site"; \
+	tag=$$(curl -s "https://registry.hub.docker.com/v2/repositories/$$image/tags/" | python3 -c "import sys, json; print(max(json.load(sys.stdin)['results'], key=lambda x: x['last_updated'])['name'])"); \
+	if [ -z "$$tag" ]; then \
+	    echo "Error: Failed to fetch Docker image tag."; \
+	    exit 1; \
+	fi; \
+	docker run -e SECRET_KEY=secret -e ALLOWED_HOSTS='*' -e DEBUG=True -p 8000:8000 "$$image:$$tag" python manage.py collectstatic && gunicorn oc_lettings_site.wsgi:application
+
 setup_install: setup_local_env install
 virtual_linux_setup_install: virtual_env_linux setup_local_env install
 virtual_windows_setup_install: virtual_env_windows setup_local_env install

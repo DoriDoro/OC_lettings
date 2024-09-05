@@ -54,15 +54,15 @@ issues you encounter.
 
 Login to Docker Hub and pull the Latest Docker Image:
 
-`$ make pull_docker_image`
+`$ make pull_docker_image_python`
 
 Verify the Pulled Image and get the ``TAG``:
 
 `$ docker images`
 
-Run the Docker Container and replace <tag> with ``TAG`` from command $ docker images:
+Run the Docker Container:
 
-`$ docker run -e SECRET_KEY=secret -p 8000:8000 doridoro/oc_lettings_site:<tag> python manage.py collectstatic && gunicorn oc_lettings_site.wsgi:application`
+`$ make run_docker_image`
 
 ### Possibility 2: Clone the GitHub repository
 
