@@ -68,7 +68,7 @@ Run the Docker Container:
 
 **1) Clone the GitHub repository**
 
-`$ git clone https://github.com/DoriDoro/OC_lettings.git`
+`$ git clone https://github.com/DoriDoro/OC_lettings.git` <br>
 `$ cd OC_lettings`
 
 
